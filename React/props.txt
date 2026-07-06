@@ -1,9 +1,8 @@
-🟢 Basic Props Interview Questions
+Basic Props Interview Questions
+
 Q1. What are props in React?
 Answer
-
 Props (short for Properties) are read-only values passed from a parent component to a child component. They allow components to receive data and make them reusable.
-
 Props help components display different data without changing their internal logic.
 
 Example
@@ -16,11 +15,10 @@ return <h1>Hello, {props.name}</h1>;
 }
 
 Output
-
 Hello, John
+=============================================================================================================================
 Q2. Why are props used?
 Answer
-
 Props are used to:
 
 Pass data from parent to child.
@@ -29,6 +27,7 @@ Customize component behavior.
 Pass functions, objects, arrays, and JSX.
 
 Without props, every component would display the same static content.
+===================================================================================================================================
 
 Q3. What does "props" stand for?
 Answer
@@ -46,6 +45,7 @@ Similarly in React:
 <User name="John" age={25} />
 
 Here, name and age are props.
+==========================================================================================================================================
 
 Q4. How do you pass props from parent to child?
 Answer
@@ -65,6 +65,7 @@ return (
 </>
 );
 }
+=====================================================================================================================
 Q5. How do you access props inside a component?
 Answer
 
@@ -82,6 +83,7 @@ return <h1>{name}</h1>;
 }
 
 Destructuring is generally preferred because it makes the code cleaner.
+========================================================================================================================
 
 Q6. Can a component receive multiple props?
 Answer
@@ -104,13 +106,14 @@ return (
 Usage
 
 <User name="John" city="Pune" age={24} />
+==================================================================================================================
 Q7. What is the difference between props and state?
 Answer
-Props	State
-Passed from parent	Managed inside component
-Read-only	Can be updated
-Used for communication	Used for local data
-Parent controls it	Component controls it
+Props	                         State
+Passed from parent	           Managed inside component
+Read-only	                     Can be updated
+Used for communication	       Used for local data
+Parent controls it	           Component controls it
 
 Example:
 
@@ -121,6 +124,7 @@ name is a prop.
 const [count, setCount] = useState(0);
 
 count is state.
+========================================================================================================================
 
 Q8. Are props read-only?
 Answer
@@ -130,6 +134,7 @@ Yes.
 Props are immutable, meaning a child component should never modify them.
 
 Only the parent component should change the values passed as props.
+==============================================================================================================
 
 Q9. Why are props immutable?
 Answer
@@ -139,6 +144,7 @@ Props are immutable because React follows one-way data flow (Parent → Child).
 If child components could modify props, it would make the application's data flow unpredictable and harder to debug.
 
 Instead, the child should notify the parent (using a callback prop) if data needs to change.
+=========================================================================================================================
 
 Q10. Can we modify props inside a child component?
 Answer
@@ -161,6 +167,7 @@ return <h1>{name}</h1>;
 }
 
 If the value needs to change, update it in the parent component.
+=======================================================================================================================
 
 Q11. What happens if we try to modify props?
 Answer
@@ -170,6 +177,7 @@ React expects props to be treated as read-only.
 Mutating props can lead to unexpected behavior, bugs, and makes your code harder to maintain. In development, React may also warn about improper patterns depending on the situation.
 
 Always create new values instead of modifying props directly.
+================================================================================================================================
 
 Q12. How do you pass a string prop?
 Answer
@@ -183,12 +191,15 @@ Access:
 function User({ name }) {
 return <h1>{name}</h1>;
 }
+===================================================================================================================================
+
 Q13. How do you pass a number prop?
 Answer
 
 Numbers are passed using curly braces.
 
 <User age={25} />
+============================================================================================================================================
 Q14. How do you pass a boolean prop?
 Answer
 <Button disabled={true} />
@@ -200,6 +211,7 @@ Short form:
 Both mean:
 
 disabled={true}
+========================================================================================================================================
 Q15. How do you pass an object as a prop?
 Answer
 
@@ -217,6 +229,7 @@ Access:
 function User({ user }) {
 return <h1>{user.name}</h1>;
 }
+===================================================================================================================================
 Q16. How do you pass an array as a prop?
 Answer
 const fruits = ["Apple", "Mango", "Banana"];
@@ -234,6 +247,7 @@ return (
 </ul>
 );
 }
+===============================================================================================================
 Q17. How do you pass a function as a prop?
 Answer
 
@@ -252,6 +266,7 @@ Child:
 function Button({ onClick }) {
 return <button onClick={onClick}>Click</button>;
 }
+===========================================================================================================
 Q18. How do you pass JSX as a prop?
 Answer
 
@@ -268,6 +283,7 @@ return (
 </div>
 );
 }
+==================================================================================================================
 Q19. How do you pass components as props?
 Answer
 
@@ -288,6 +304,7 @@ return (
 </div>
 );
 }
+=====================================================================================================================
 Q20. What is the children prop?
 Answer
 
@@ -311,6 +328,7 @@ return (
 }
 
 children makes components highly reusable because the parent decides what content goes inside.
+=========================================================================================================================
 
 🚀 Quick Revision
 Props = Properties.
@@ -321,6 +339,8 @@ Props can be string, number, boolean, object, array, function, JSX, or even anot
 children is a special prop for nested content.
 Use destructuring (function User({ name })) for cleaner code.
 If data needs to change, update it in the parent, not in the child.
+
+=========================================================================================================================================
 
 Q21. How do you render children?
 Answer
@@ -358,6 +378,7 @@ Output
 Interview Tip
 
 children makes components flexible because the parent decides what content appears inside them.
+=======================================================================================================================================
 
 Q22. What are default props?
 Answer
@@ -3580,6 +3601,7 @@ and
 
 <Component name="John" />
 How do you optimize props performance?
+==========================================================================================================================
 💻 Coding Questions
 Beginner
 
