@@ -1,15 +1,19 @@
-import Parent from "./components/props/Parent"
+// import Card from "../../cards_project/src/components/Card"
+
 
 
 function App() {
  
 
   return (
-  <>
-  <Parent />  
+  <div className="parent">
+    <div className="card">
+
+    </div>
+  {/* <Card /> */}
 
     
-  </>
+  </div>
   )
 }
 
