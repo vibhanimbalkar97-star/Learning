@@ -1,0 +1,2017 @@
+Level 1: Number State (Easy)
+1. Counter
+Increment
+Decrement
+Reset
+const [count, setCount] = useState(0);
+2. Step Counter
++5
+-5
++10
+3. Like Button
+
+❤️ Likes: 0
+
+Increase likes.
+
+4. Age Calculator
+Age: 22
+
+Increase
+Decrease
+Level 2: String State
+5. Input Box
+const [name, setName] = useState("");
+
+Display
+
+Hello Vibha
+6. Character Counter
+Input:
+Hello
+
+Characters: 5
+7. Password Show/Hide
+********
+
+Show
+Hide
+8. Uppercase/Lowercase Converter
+
+Buttons
+
+UPPERCASE
+
+lowercase
+
+Clear
+Level 3: Boolean State
+9. Dark Mode
+Dark Mode
+
+ON/OFF
+10. Login Status
+Logged In
+
+Logout
+11. Toggle Paragraph
+Show Details
+Hide Details
+12. Checkbox
+Accept Terms
+
+☑
+Level 4: Array State
+13. Add Number
+[10,20,30]
+
+Add 40
+14. Remove Last
+[10,20,30]
+
+Remove Last
+15. Remove First
+[10,20,30]
+
+Remove First
+16. Reverse Array
+[10,20,30]
+
+↓
+
+[30,20,10]
+17. Sort Array
+
+Ascending
+
+Descending
+
+18. Double Every Number
+[10,20,30]
+
+↓
+
+[20,40,60]
+19. Replace Value
+20
+
+↓
+
+99
+
+using
+
+map()
+20. Filter Even Numbers
+[10,15,20,25]
+
+↓
+
+[10,20]
+21. Search Number
+
+Input
+
+20
+
+Found
+Level 5: Object State
+22. Profile
+const [user, setUser] = useState({
+  name: "Vibha",
+  age: 24
+});
+
+Buttons
+
+Increase Age
+
+Change Name
+23. Address
+{
+ city:"Pune",
+ state:"MH"
+}
+
+Update only city.
+
+24. Toggle User Status
+{
+ active:true
+}
+25. Shopping Cart
+{
+ item:"Shoes",
+ quantity:1
+}
+
+Increase quantity.
+
+Decrease quantity.
+
+Level 6: Array of Objects
+26. Student List
+[
+ {id:1,name:"A"},
+ {id:2,name:"B"}
+]
+
+Add student.
+
+27. Delete Student
+
+Delete using id.
+
+28. Edit Student
+A
+
+↓
+
+Alex
+29. Toggle Status
+{
+ id:1,
+ active:false
+}
+
+↓
+
+true
+30. Todo App
+Add Todo
+
+Delete Todo
+
+Complete Todo
+Level 7: Nested Object
+31.
+const [user,setUser]=useState({
+    name:"Vibha",
+    address:{
+        city:"Pune",
+        pincode:411001
+    }
+})
+
+Update only city.
+
+32.
+
+Update only pincode.
+
+33.
+
+Add country.
+
+Level 8: Forms
+34. Login Form
+Email
+
+Password
+
+Store in state.
+
+35. Registration Form
+Name
+
+Email
+
+Phone
+
+Password
+
+Single object state.
+
+36. Reset Form
+
+Clear all inputs.
+
+37. Validation
+Email required
+
+Password required
+Level 9: Real Projects
+38. Calculator
++
+
+-
+
+×
+
+÷
+39. Notes App
+Add Note
+
+Delete
+
+Edit
+40. Shopping Cart
+
+Increase quantity.
+
+Decrease quantity.
+
+Delete item.
+
+Calculate total.
+
+41. Movie Search
+
+Input
+
+Filter movie list.
+
+42. Employee CRUD
+
+Add
+
+Edit
+
+Delete
+
+Search
+
+43. Expense Tracker
+Income
+
+Expense
+
+Balance
+44. Weather App
+
+Store API response.
+
+45. Quiz App
+
+Current Question
+
+Score
+
+Next
+
+Previous
+
+46. Image Gallery
+
+Next
+
+Previous
+
+Random Image
+
+47. Pagination
+
+Current page
+
+Next
+
+Previous
+
+48. Stopwatch
+
+Start
+
+Stop
+
+Reset
+
+(Uses useState + useEffect.)
+
+49. OTP Input
+
+Store six digits.
+
+50. E-commerce Cart
+Add product
+Remove product
+Increase quantity
+Decrease quantity
+Calculate subtotal
+Apply discount
+Empty cart
+Pro-Level Challenge (No Hints)
+
+Try these on your own without looking at solutions:
+
+Build a Todo App with edit, delete, and complete.
+Create a Shopping Cart with quantity updates and total calculation.
+Build a CRUD app for Employees.
+Create a Notes App with search functionality.
+Build a Multi-Step Form with Next/Previous navigation.
+Create a Kanban Board (drag-and-drop optional).
+Build a Chat UI where messages are stored in state.
+Build a Product Filter (search + category + price).
+Build a Memory Card Game.
+Build a Mini E-commerce App (products, cart, checkout).
+
+Level 1: Basics
+1. What is useState?
+
+Answer:
+
+useState is a React Hook that allows functional components to store and manage state.
+
+State is data that can change over time. When the state changes, React re-renders the component to display the updated UI.
+
+Example:
+
+import { useState } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return <h1>{count}</h1>;
+}
+
+Here:
+
+count is the current state.
+setCount updates the state.
+2. Why do we use useState?
+
+Answer:
+
+We use useState to store values that can change while the application is running.
+
+Examples:
+
+Counter value
+User name
+Form inputs
+Login status
+Theme (Dark/Light)
+Shopping cart items
+Todo list
+
+Without useState, React wouldn't know that the data changed, so the UI wouldn't update automatically.
+
+3. What does useState return?
+
+Answer:
+
+useState returns an array with two elements:
+
+The current state value.
+A function to update that state.
+
+Example:
+
+const [count, setCount] = useState(0);
+
+This is equivalent to:
+
+const stateArray = useState(0);
+
+// stateArray[0] → current value
+// stateArray[1] → update function
+4. What are the two values returned by useState?
+
+Answer:
+
+const [count, setCount] = useState(0);
+First value
+count
+
+It stores the current state.
+
+Initially:
+
+count = 0
+Second value
+setCount
+
+It updates the state.
+
+Example:
+
+setCount(5);
+
+Now React updates:
+
+count = 5
+
+and re-renders the component.
+
+5. What is the syntax of useState?
+
+Answer:
+
+const [state, setState] = useState(initialValue);
+
+Example:
+
+const [count, setCount] = useState(0);
+
+For a string:
+
+const [name, setName] = useState("");
+
+For a boolean:
+
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+For an array:
+
+const [numbers, setNumbers] = useState([]);
+
+For an object:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  age: 25,
+});
+6. Why is useState called a Hook?
+
+Answer:
+
+useState is called a Hook because it lets a functional component hook into React's state management.
+
+Before Hooks, only class components could manage state.
+
+Hooks made it possible for functional components to use state and other React features.
+
+Example:
+
+const [count, setCount] = useState(0);
+
+The component is "hooking into" React's state system.
+
+7. Where can you use useState?
+
+Answer:
+
+useState can only be used:
+
+Inside a React functional component.
+Inside a custom Hook.
+
+✅ Correct:
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return <h1>{count}</h1>;
+}
+
+Also correct:
+
+function useCounter() {
+  const [count, setCount] = useState(0);
+
+  return { count, setCount };
+}
+
+❌ Incorrect:
+
+const [count, setCount] = useState(0);
+
+outside a component.
+
+8. Can useState be used inside a class component?
+
+Answer:
+
+No.
+
+useState works only with functional components.
+
+Class components manage state differently:
+
+class App extends React.Component {
+  state = {
+    count: 0,
+  };
+}
+
+Functional components use:
+
+const [count, setCount] = useState(0);
+9. Can we use multiple useState Hooks in one component?
+
+Answer:
+
+Yes.
+
+A component can use as many useState Hooks as needed.
+
+Example:
+
+function App() {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(25);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  return (
+    <>
+      <h2>{name}</h2>
+      <h2>{age}</h2>
+      <h2>{isLoggedIn ? "Logged In" : "Logged Out"}</h2>
+    </>
+  );
+}
+
+Each state variable is independent.
+
+10. What happens if you don't use useState and use a normal variable instead?
+
+Answer:
+
+A normal variable does not persist between renders and changing it does not trigger a re-render.
+
+Example:
+
+function App() {
+  let count = 0;
+
+  const increase = () => {
+    count++;
+    console.log(count);
+  };
+
+  return (
+    <>
+      <h1>{count}</h1>
+      <button onClick={increase}>Increase</button>
+    </>
+  );
+}
+What happens?
+
+Initially:
+
+count = 0
+
+Click the button:
+
+console.log → 1
+
+But the UI still shows:
+
+0
+
+Why?
+
+Because changing a normal variable doesn't tell React to re-render the component.
+
+The correct approach is:
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <>
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>
+        Increase
+      </button>
+    </>
+  );
+}
+
+Now each click updates the state, React re-renders the component, and the UI displays the new value.
+
+Interview tip
+
+A common interview question is: "Why use useState instead of a normal variable?"
+
+A concise answer is:
+
+useState stores data between renders and tells React to re-render the component when the state changes. A normal variable is recreated on every render and changing it does not update the UI.
+===================================================================================================================================================================================================
+Level 2: State Updates
+11. What happens when you call the setter function?
+
+Answer:
+
+When you call the setter function (like setCount), React:
+
+Schedules a state update.
+Stores the new value.
+Re-renders the component.
+Updates the UI with the new state.
+
+Example:
+
+const [count, setCount] = useState(0);
+
+const increase = () => {
+  setCount(count + 1);
+};
+
+Initially:
+
+count = 0
+
+Click button:
+
+setCount(1)
+
+React updates state and re-renders.
+
+New UI:
+
+1
+12. Does changing state re-render the component?
+
+Answer:
+
+✅ Yes.
+
+Whenever state changes, React re-renders the component so the UI reflects the latest state.
+
+Example:
+
+const [name, setName] = useState("Vibha");
+
+setName("Rahul");
+
+React renders again and displays:
+
+Rahul
+13. Does updating a normal variable re-render the component?
+
+Answer:
+
+❌ No.
+
+Example:
+
+let count = 0;
+
+const increase = () => {
+  count++;
+};
+
+Even though count changes, React doesn't know about it, so the UI does not update.
+
+Only state updates trigger re-renders.
+
+14. Is state updated immediately?
+
+Answer:
+
+❌ No.
+
+State updates are scheduled by React and applied before the next render.
+
+Example:
+
+const [count, setCount] = useState(0);
+
+const handleClick = () => {
+  setCount(1);
+
+  console.log(count);
+};
+
+Output:
+
+0
+
+because count hasn't updated yet during the current function execution.
+
+After React re-renders:
+
+count = 1
+15. Why is a state update considered asynchronous?
+
+Answer:
+
+React schedules state updates instead of applying them instantly. This allows React to:
+
+Batch multiple updates together.
+Avoid unnecessary re-renders.
+Improve performance.
+
+So after calling:
+
+setCount(10);
+
+React doesn't immediately change count. It updates it during the next render cycle.
+
+16. Can you read the updated state immediately after calling setState?
+
+Answer:
+
+❌ No.
+
+Example:
+
+const [count, setCount] = useState(0);
+
+const handleClick = () => {
+  setCount(5);
+
+  console.log(count);
+};
+
+Output:
+
+0
+
+because React hasn't re-rendered yet.
+
+On the next render:
+
+count = 5
+17. What happens if you call setState multiple times?
+
+Answer:
+
+React processes all state updates.
+
+Example:
+
+setCount(1);
+setCount(2);
+setCount(3);
+
+Final state:
+
+3
+
+The last update wins because each call replaces the previous value.
+
+However, if the next state depends on the previous one, use the functional updater:
+
+setCount(prev => prev + 1);
+setCount(prev => prev + 1);
+setCount(prev => prev + 1);
+
+Now each update builds on the previous one.
+
+18. What is React batching?
+
+Answer:
+
+Batching means React groups multiple state updates into a single re-render.
+
+Example:
+
+const handleClick = () => {
+  setName("Vibha");
+  setAge(25);
+  setCity("Pune");
+};
+
+Instead of rendering three times, React batches these updates and renders once.
+
+Benefits:
+
+Better performance.
+Fewer unnecessary renders.
+Smoother UI updates.
+19. Why is batching useful?
+
+Answer:
+
+Without batching:
+
+setName()
+
+↓
+
+Render
+
+↓
+
+setAge()
+
+↓
+
+Render
+
+↓
+
+setCity()
+
+↓
+
+Render
+
+Total:
+
+3 renders
+
+With batching:
+
+setName()
+setAge()
+setCity()
+
+↓
+
+1 render
+
+Advantages:
+
+Faster applications.
+Better performance.
+Less work for React.
+20. Does React batch updates only in event handlers?
+
+Answer:
+
+❌ No.
+
+Starting with React 18, React automatically batches updates in many situations, including:
+
+Event handlers
+setTimeout
+Promises
+Async functions
+Native event handlers
+
+Example:
+
+setTimeout(() => {
+  setCount(c => c + 1);
+  setName("Vibha");
+}, 1000);
+
+In React 18, these updates are batched into a single render.
+
+| Question                                    | Short Answer                                                           |
+| ------------------------------------------- | ---------------------------------------------------------------------- |
+| 11. What does the setter do?                | Schedules a state update and triggers a re-render.                     |
+| 12. Does state change re-render?            | ✅ Yes.                                                                 |
+| 13. Does a normal variable re-render?       | ❌ No.                                                                  |
+| 14. Is state updated immediately?           | ❌ No, it's scheduled.                                                  |
+| 15. Why is it asynchronous?                 | To allow batching and improve performance.                             |
+| 16. Can you read updated state immediately? | ❌ No, not in the same execution.                                       |
+| 17. Multiple `setState` calls?              | React processes them; the final result depends on how they're written. |
+| 18. What is batching?                       | Grouping multiple updates into one render.                             |
+| 19. Why batching?                           | Improves performance by reducing renders.                              |
+| 20. Only event handlers?                    | ❌ No. React 18 batches updates in many asynchronous contexts as well.  |
+==========================================================================================================================================
+Level 3: Functional Updates
+21. What's the difference between these?
+setCount(count + 1);
+
+and
+
+setCount((prev) => prev + 1);
+Answer
+
+Both increment the count, but they behave differently when multiple updates happen.
+
+1. Direct update
+setCount(count + 1);
+
+Uses the current value of count from the current render.
+
+Example:
+
+const [count, setCount] = useState(0);
+
+const handleClick = () => {
+  setCount(count + 1);
+};
+
+If count = 0
+
+After click:
+
+count = 1
+2. Functional update
+setCount((prev) => prev + 1);
+
+Uses the latest state value provided by React.
+
+Example:
+
+const handleClick = () => {
+  setCount((prev) => prev + 1);
+};
+
+If count = 0
+
+After click:
+
+count = 1
+
+Both give the same result for one update, but the functional form is safer when the next state depends on the previous state.
+
+22. When should you use the functional updater?
+Answer
+
+Use it whenever the new state depends on the previous state.
+
+Examples:
+
+Increment counter
+Decrement counter
+Toggle boolean
+Add item to an array
+Remove item from an array
+Update an object based on its current values
+
+Example:
+
+setCount((prev) => prev + 1);
+setIsOpen((prev) => !prev);
+setItems((prev) => [...prev, newItem]);
+23. Why is the functional updater safer?
+Answer
+
+Because React may batch multiple updates together.
+
+Instead of using an outdated value, React passes the latest state into the updater function.
+
+Example:
+
+setCount((prev) => prev + 1);
+
+Even if several updates happen, prev is always the most recent value.
+
+24. What does prev represent?
+Answer
+
+prev is the previous (current/latest) state value that React provides.
+
+Example:
+
+const [count, setCount] = useState(5);
+
+setCount((prev) => prev + 1);
+
+Here:
+
+prev = 5
+
+React returns:
+
+6
+
+After re-render:
+
+count = 6
+25. What happens here?
+setCount(count + 1);
+setCount(count + 1);
+
+Assume:
+
+count = 0;
+
+Both lines evaluate to:
+
+setCount(1);
+setCount(1);
+
+React processes them, and the final state is:
+
+count = 1
+
+Not
+
+count = 2
+
+because both updates use the same old value (0).
+
+26. What happens here?
+setCount((prev) => prev + 1);
+setCount((prev) => prev + 1);
+
+Assume:
+
+count = 0
+
+First update:
+
+0 → 1
+
+Second update:
+
+1 → 2
+
+Final state:
+
+count = 2
+
+Each updater receives the latest state.
+
+27. Can you rename prev?
+
+Example:
+
+setCount((current) => current + 1);
+Answer
+
+✅ Yes.
+
+prev is just a parameter name.
+
+These are all valid:
+
+setCount((prev) => prev + 1);
+setCount((current) => current + 1);
+setCount((value) => value + 1);
+setCount((oldCount) => oldCount + 1);
+
+Most developers use prev because it's short and descriptive.
+
+28. Is prev a keyword?
+Answer
+
+❌ No.
+
+It's a regular function parameter.
+
+Example:
+
+setCount((banana) => banana + 1);
+
+This also works because banana is just the parameter name.
+
+29. Why is the functional updater preferred in production?
+Answer
+
+Because it avoids bugs caused by stale state and batching.
+
+Example:
+
+setLikes((prev) => prev + 1);
+
+This always uses the latest value, even when multiple updates are queued.
+
+Benefits:
+
+More reliable
+Works correctly with batched updates
+Easier to maintain
+Recommended by the React team when the new state depends on the old state
+30. Which approach is recommended in interviews?
+Answer
+
+It depends on the situation.
+
+If you're replacing the state with a new value:
+
+setName("Vibha");
+
+or
+
+setIsLoggedIn(true);
+
+this is perfectly fine.
+
+If you're calculating the next state from the previous one:
+
+setCount((prev) => prev + 1);
+setIsOpen((prev) => !prev);
+setItems((prev) => [...prev, newItem]);
+
+use the functional updater.
+
+Interview rule to remember
+
+If the new state depends on the previous state, use the functional updater. Otherwise, pass the new value directly.
+
+| Question | Short Answer                                                                                         |
+| -------- | ---------------------------------------------------------------------------------------------------- |
+| 21       | `count + 1` uses the current render's value; `prev => prev + 1` uses the latest state.               |
+| 22       | Use the functional updater when the next state depends on the previous state.                        |
+| 23       | It's safer because React may batch updates.                                                          |
+| 24       | `prev` is the latest state value provided by React.                                                  |
+| 25       | Two `setCount(count + 1)` calls from `0` result in `1`.                                              |
+| 26       | Two `setCount(prev => prev + 1)` calls from `0` result in `2`.                                       |
+| 27       | Yes, `prev` can be renamed to any valid parameter name.                                              |
+| 28       | No, `prev` is not a JavaScript keyword.                                                              |
+| 29       | It avoids stale state bugs and works correctly with batched updates.                                 |
+| 30       | Use direct values for replacements; use the functional updater when calculating from previous state. |
+
+==================================================================================================================================
+Level 4: Different Types of State
+31. Can state store numbers?
+Answer
+
+✅ Yes.
+
+Numbers are commonly stored in state.
+
+Example:
+
+const [count, setCount] = useState(0);
+
+Update:
+
+setCount(10);
+
+Use cases:
+
+Counter
+Likes
+Age
+Quantity
+Score
+32. Can state store strings?
+Answer
+
+✅ Yes.
+
+Example:
+
+const [name, setName] = useState("");
+
+Update:
+
+setName("Vibha");
+
+Use cases:
+
+Username
+Email
+Search input
+Comments
+Messages
+33. Can state store booleans?
+Answer
+
+✅ Yes.
+
+Example:
+
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+Update:
+
+setIsLoggedIn(true);
+
+Use cases:
+
+Login status
+Dark mode
+Modal open/close
+Loading state
+Checkbox status
+34. Can state store arrays?
+Answer
+
+✅ Yes.
+
+Example:
+
+const [numbers, setNumbers] = useState([10, 20, 30]);
+
+Add an item:
+
+setNumbers((prev) => [...prev, 40]);
+
+Remove an item:
+
+setNumbers((prev) => prev.filter((num) => num !== 20));
+
+Use cases:
+
+Todo list
+Products
+Students
+Messages
+Cart items
+35. Can state store objects?
+Answer
+
+✅ Yes.
+
+Example:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  age: 24,
+});
+
+Update one property:
+
+setUser((prev) => ({
+  ...prev,
+  age: 25,
+}));
+
+Use cases:
+
+User profile
+Form data
+Settings
+Employee details
+36. Can state store functions?
+Answer
+
+✅ Yes, but with an important distinction.
+
+You can store a function in state, but if you pass a function directly to useState, React treats it as a lazy initializer.
+
+To store a function:
+
+const [multiply] = useState(() => {
+  return (x) => x * 2;
+});
+
+console.log(multiply(5)); // 10
+
+If you do this:
+
+const [value] = useState(() => 100);
+
+React calls the function once and stores 100, not the function itself.
+
+Interview Tip: Most applications don't store functions in state. They usually store data.
+
+37. Can state store null?
+Answer
+
+✅ Yes.
+
+Example:
+
+const [user, setUser] = useState(null);
+
+Later:
+
+setUser({
+  name: "Vibha",
+  age: 24,
+});
+
+Use cases:
+
+Data not loaded yet
+No selected item
+No logged-in user
+38. Can state store undefined?
+Answer
+
+✅ Yes, but it's generally not recommended.
+
+Example:
+
+const [value, setValue] = useState(undefined);
+
+or simply:
+
+const [value, setValue] = useState();
+
+However, it's usually better to use a more meaningful initial value:
+
+useState("");
+
+or
+
+useState(null);
+
+or
+
+useState([]);
+
+This makes your code easier to understand and avoids unnecessary checks.
+
+39. Can state store nested objects?
+Answer
+
+✅ Yes.
+
+Example:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  address: {
+    city: "Pune",
+    pincode: 411001,
+  },
+});
+
+Update only the city:
+
+setUser((prev) => ({
+  ...prev,
+  address: {
+    ...prev.address,
+    city: "Mumbai",
+  },
+}));
+
+Notice that you spread both the outer object and the nested object to avoid mutating state.
+
+40. Can state store arrays of objects?
+Answer
+
+✅ Yes.
+
+This is one of the most common patterns in React.
+
+Example:
+
+const [students, setStudents] = useState([
+  { id: 1, name: "Amit" },
+  { id: 2, name: "Vibha" },
+]);
+
+Add a student:
+
+setStudents((prev) => [
+  ...prev,
+  { id: 3, name: "Rahul" },
+]);
+
+Update a student:
+
+setStudents((prev) =>
+  prev.map((student) =>
+    student.id === 2
+      ? { ...student, name: "Priya" }
+      : student
+  )
+);
+
+Delete a student:
+
+setStudents((prev) =>
+  prev.filter((student) => student.id !== 1)
+);
+
+Use cases:
+
+Employee lists
+Product lists
+Todo apps
+Shopping carts
+Chat messages
+
+| Question | Short Answer                                                                                                   |
+| -------- | -------------------------------------------------------------------------------------------------------------- |
+| 31       | ✅ Yes, state can store numbers.                                                                                |
+| 32       | ✅ Yes, state can store strings.                                                                                |
+| 33       | ✅ Yes, state can store booleans.                                                                               |
+| 34       | ✅ Yes, state can store arrays.                                                                                 |
+| 35       | ✅ Yes, state can store objects.                                                                                |
+| 36       | ✅ Yes, it can store functions, but passing a function to `useState` directly is treated as a lazy initializer. |
+| 37       | ✅ Yes, `null` is commonly used for "no value yet."                                                             |
+| 38       | ✅ Yes, but `undefined` is usually avoided in favor of a clearer initial value.                                 |
+| 39       | ✅ Yes, nested objects are supported and should be updated immutably.                                           |
+| 40       | ✅ Yes, arrays of objects are very common in React applications.                                                |
+
+=================================================================================
+Level 5: Arrays
+41. Why shouldn't you use push() directly on state?
+Answer
+
+push() mutates (changes) the original array.
+
+React expects state to be treated as immutable, meaning you should create a new array instead of changing the existing one.
+
+❌ Wrong:
+
+const [numbers, setNumbers] = useState([10, 20, 30]);
+
+numbers.push(40);
+setNumbers(numbers);
+
+✅ Correct:
+
+setNumbers((prev) => [...prev, 40]);
+
+The spread operator (...) creates a new array, allowing React to detect the change.
+
+42. Why is this wrong?
+numbers.push(5);
+setNumbers(numbers);
+Answer
+
+push() changes the original array.
+
+Example:
+
+Before:
+
+[10, 20, 30]
+
+After:
+
+numbers.push(5);
+
+The same array becomes:
+
+[10, 20, 30, 5]
+
+Since the reference hasn't changed, React may not recognize it as a new state, which can lead to bugs or skipped re-renders.
+
+Instead, create a new array:
+
+setNumbers((prev) => [...prev, 5]);
+43. Correct way to add an item?
+Answer
+
+Use the spread operator.
+
+setNumbers((prev) => [...prev, 40]);
+
+Example:
+
+Before:
+
+[10, 20, 30]
+
+After:
+
+[10, 20, 30, 40]
+
+You can also add at the beginning:
+
+setNumbers((prev) => [5, ...prev]);
+
+Result:
+
+[5, 10, 20, 30]
+44. Correct way to remove an item?
+Answer
+
+Use filter().
+
+Example:
+
+const [numbers, setNumbers] = useState([10, 20, 30, 40]);
+
+setNumbers((prev) =>
+  prev.filter((num) => num !== 20)
+);
+
+Result:
+
+[10, 30, 40]
+
+Or remove by index:
+
+setNumbers((prev) =>
+  prev.filter((_, index) => index !== 1)
+);
+45. Correct way to update an item?
+Answer
+
+Use map().
+
+Example:
+
+const [numbers, setNumbers] = useState([10, 20, 30]);
+
+setNumbers((prev) =>
+  prev.map((num) =>
+    num === 20 ? 99 : num
+  )
+);
+
+Result:
+
+[10, 99, 30]
+
+map() creates a new array while updating only the matching element.
+
+46. Why do we use the spread operator?
+Answer
+
+The spread operator (...) copies an array or object.
+
+Example:
+
+const arr = [10, 20, 30];
+
+const newArr = [...arr];
+
+Result:
+
+newArr = [10, 20, 30]
+
+Now you can safely add or modify items without changing the original array.
+
+Example:
+
+setNumbers((prev) => [...prev, 40]);
+
+This creates a new array:
+
+[10, 20, 30, 40]
+
+instead of modifying the existing one.
+
+47. What happens if you mutate an array directly?
+Answer
+
+Direct mutation can cause:
+
+Bugs
+Unpredictable behavior
+React missing the update
+Difficult debugging
+
+Example:
+
+numbers.push(40);
+
+or
+
+numbers[0] = 100;
+
+These modify the original array.
+
+React relies on detecting a new reference to know that state has changed.
+
+Always create a new array:
+
+setNumbers((prev) => [...prev, 40]);
+48. Which methods are commonly used with array state?
+Answer
+map()
+
+Update items.
+
+setNumbers((prev) =>
+  prev.map((num) =>
+    num * 2
+  )
+);
+filter()
+
+Remove items.
+
+setNumbers((prev) =>
+  prev.filter((num) => num !== 20)
+);
+slice()
+
+Copy part of an array.
+
+const firstTwo = numbers.slice(0, 2);
+
+Or remove the last item:
+
+setNumbers((prev) =>
+  prev.slice(0, -1)
+);
+concat()
+
+Add items without mutating.
+
+setNumbers((prev) =>
+  prev.concat(40)
+);
+
+Result:
+
+[10, 20, 30, 40]
+
+Other useful methods:
+
+find()
+findIndex()
+some()
+every()
+reduce()
+sort() (create a copy first: [...prev].sort())
+49. Why is immutability important?
+Answer
+
+Immutability means never modifying the original state directly.
+
+Instead of:
+
+numbers.push(40);
+
+Create a new array:
+
+[...numbers, 40]
+
+Benefits:
+
+React can detect changes.
+Components re-render correctly.
+Easier debugging.
+More predictable code.
+Better performance through efficient change detection.
+50. How do you clear an array state?
+Answer
+
+Set it to an empty array.
+
+setNumbers([]);
+
+Example:
+
+Before:
+
+[10, 20, 30]
+
+After:
+
+[]
+
+Example button:
+
+<button onClick={() => setNumbers([])}>
+  Clear Array
+</button>
+
+Interview Tip
+
+A common follow-up question is:
+
+"Can I use sort() or reverse() on state?"
+
+The answer is not directly, because both methods mutate the original array.
+
+❌ Avoid:
+
+numbers.sort();
+numbers.reverse();
+
+✅ Instead, make a copy first:
+
+setNumbers((prev) => [...prev].sort());
+
+setNumbers((prev) => [...prev].reverse());
+
+This keeps your state immutable and ensures React sees a new array reference.
+
+| Question | Short Answer                                                                           |
+| -------- | -------------------------------------------------------------------------------------- |
+| 41       | Don't use `push()` because it mutates the original array.                              |
+| 42       | `push()` changes the same array reference, which can cause React to miss updates.      |
+| 43       | Add items using the spread operator: `setNumbers(prev => [...prev, item])`.            |
+| 44       | Remove items using `filter()`.                                                         |
+| 45       | Update items using `map()`.                                                            |
+| 46       | The spread operator creates a new array or object, preserving immutability.            |
+| 47       | Direct mutation can cause bugs and prevent React from detecting changes correctly.     |
+| 48       | Common methods: `map()`, `filter()`, `slice()`, `concat()`, `find()`, `reduce()`, etc. |
+| 49       | Immutability helps React detect changes and keeps state updates predictable.           |
+| 50       | Clear an array by setting it to `[]`.                                                  |
+
+==================================================================================
+Level 6: Objects
+51. Why shouldn't you modify an object directly?
+Answer
+
+React state should be treated as immutable.
+
+If you modify the object directly, React may not detect the change because the object reference stays the same.
+
+❌ Wrong:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  age: 24,
+});
+
+user.age = 25;
+setUser(user);
+
+✅ Correct:
+
+setUser((prev) => ({
+  ...prev,
+  age: 25,
+}));
+52. What's wrong with this?
+user.age = 25;
+setUser(user);
+Answer
+
+user.age = 25 mutates the existing object.
+
+Before:
+
+{
+  name: "Vibha",
+  age: 24
+}
+
+After:
+
+{
+  name: "Vibha",
+  age: 25
+}
+
+The object reference is still the same.
+
+React compares object references, not individual properties, so it may not recognize this as a new state.
+
+Always create a new object instead.
+
+53. Correct way to update an object?
+Answer
+
+Use the spread operator (...).
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  age: 24,
+});
+
+Update age:
+
+setUser((prev) => ({
+  ...prev,
+  age: 25,
+}));
+
+Result:
+
+{
+  name: "Vibha",
+  age: 25
+}
+
+The original object remains unchanged.
+
+54. Why do we use:
+{
+  ...user
+}
+Answer
+
+The spread operator copies all properties of the object into a new object.
+
+Example:
+
+const user = {
+  name: "Vibha",
+  age: 24,
+};
+const newUser = {
+  ...user,
+};
+
+Result:
+
+{
+  name: "Vibha",
+  age: 24,
+}
+
+Now you can safely update a property:
+
+const updatedUser = {
+  ...user,
+  age: 25,
+};
+
+Result:
+
+{
+  name: "Vibha",
+  age: 25,
+}
+55. How do you update one property?
+Answer
+
+Suppose:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  age: 24,
+  city: "Pune",
+});
+
+Update only the city:
+
+setUser((prev) => ({
+  ...prev,
+  city: "Mumbai",
+}));
+
+Result:
+
+{
+  name: "Vibha",
+  age: 24,
+  city: "Mumbai",
+}
+
+Only city changes. Other properties stay the same.
+
+56. How do you update nested objects?
+Answer
+
+Suppose:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  address: {
+    city: "Pune",
+    pincode: 411001,
+  },
+});
+
+Update only the city:
+
+setUser((prev) => ({
+  ...prev,
+  address: {
+    ...prev.address,
+    city: "Mumbai",
+  },
+}));
+
+Result:
+
+{
+  name: "Vibha",
+  address: {
+    city: "Mumbai",
+    pincode: 411001,
+  },
+}
+
+Notice that we spread both the outer object and the nested address object.
+
+57. How do you remove a property?
+Answer
+
+Use object destructuring with the rest operator.
+
+Suppose:
+
+const user = {
+  name: "Vibha",
+  age: 24,
+  city: "Pune",
+};
+
+Remove age:
+
+setUser((prev) => {
+  const { age, ...rest } = prev;
+  return rest;
+});
+
+Result:
+
+{
+  name: "Vibha",
+  city: "Pune",
+}
+
+Another option is to create a new object manually:
+
+setUser({
+  name: user.name,
+  city: user.city,
+});
+58. Can object state contain arrays?
+Answer
+
+✅ Yes.
+
+Example:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  skills: ["React", "JavaScript"],
+});
+
+Add a new skill:
+
+setUser((prev) => ({
+  ...prev,
+  skills: [...prev.skills, "Node.js"],
+}));
+
+Result:
+
+{
+  name: "Vibha",
+  skills: [
+    "React",
+    "JavaScript",
+    "Node.js"
+  ]
+}
+59. Can object state contain another object?
+Answer
+
+✅ Yes.
+
+Example:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  address: {
+    city: "Pune",
+    state: "Maharashtra",
+  },
+});
+
+This is very common in React applications.
+
+Update only the state:
+
+setUser((prev) => ({
+  ...prev,
+  address: {
+    ...prev.address,
+    state: "Goa",
+  },
+}));
+60. What happens if you forget the spread operator?
+Answer
+
+Suppose:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+  age: 24,
+});
+
+You write:
+
+setUser({
+  age: 25,
+});
+
+Result:
+
+{
+  age: 25
+}
+
+The name property is lost because you're replacing the entire object with a new one that only has age.
+
+The correct way is:
+
+setUser((prev) => ({
+  ...prev,
+  age: 25,
+}));
+
+Result:
+
+{
+  name: "Vibha",
+  age: 25,
+}
+
+The spread operator preserves existing properties while updating only the ones you specify.
+
+
+Interview Tip
+
+A very common question is:
+
+Why does React recommend treating state as immutable?
+
+A strong answer is:
+
+React detects state changes by comparing references. Creating a new object or array gives React a new reference, making updates predictable and allowing React to efficiently determine when to re-render components.
+
+| Question | Short Answer                                                                                |
+| -------- | ------------------------------------------------------------------------------------------- |
+| 51       | Don't modify objects directly because state should be immutable.                            |
+| 52       | `user.age = 25` mutates the original object, so React may not detect the change correctly.  |
+| 53       | Update objects with the spread operator: `setUser(prev => ({ ...prev, key: value }))`.      |
+| 54       | `...user` creates a new object by copying existing properties.                              |
+| 55       | Spread the previous object and overwrite only the property you want to change.              |
+| 56       | Spread both the outer object and the nested object when updating nested state.              |
+| 57       | Remove a property using object destructuring and the rest operator.                         |
+| 58       | Yes, object state can contain arrays.                                                       |
+| 59       | Yes, object state can contain other objects.                                                |
+| 60       | Without the spread operator, you replace the entire object and lose any omitted properties. |
+
+======================================================================================================================
