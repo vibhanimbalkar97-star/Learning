@@ -1,18 +1,23 @@
 import { useState } from "react";
 
 const ShowHidePassword = () => {
-  const [num, setNum] = useState([10, 15, 20, 25]);
+  const [user, setUser] = useState({
+     active:true
+  });
 
-  const handleAdd = () => {
-    setNum((prev) => prev.map((n) => n === 20) ? "Found" : "Not Found");
+  const handleStatus = () => {
+    const newStatus = { ...user };
+    newStatus.active = false;
+    setUser(newStatus);
+    console.log(newStatus)
   };
 
   return (
     <div>
-      <h1>{num}</h1>
-      <button type="button" onClick={handleAdd}>
-        Search Number
-      </button>
+      <p>
+        {user.active}
+      </p>
+      <button onClick={handleStatus}>Toggle User Status</button>
     </div>
   );
 };

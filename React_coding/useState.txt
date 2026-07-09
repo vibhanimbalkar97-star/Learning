@@ -890,6 +890,20 @@ Input
 
 Found
 
+const ShowHidePassword = () => {
+  const [num] = useState([10, 15, 20, 25]);
+  const [search, setsearch] = useState("");
+
+  const found = num.includes(Number(search));
+
+  return (
+    <div>
+      <input value={search} onChange={(e) => setsearch(e.target.value)} />
+      {search && <p>{found ? "found" : "not found"}</p>}
+    </div>
+  );
+};
+
 
 Use map() when you want to change every element but keep the array length the same.
 Use filter() when you want to remove elements based on a condition, so the array may become shorter.
@@ -903,3 +917,87 @@ Interview Tip
 If asked "Why doesn't React show the brackets?", you can answer:
 
 React can render arrays of values directly. When an array is rendered inside JSX, it is converted to a comma-separated string (for primitive values like numbers and strings), so the square brackets are not displayed. If you want brackets, you need to format the output yourself, for example with JSON.stringify() or join().
+
+Level 5: Object State
+22. Profile
+const [user, setUser] = useState({
+  name: "Vibha",
+  age: 24
+});
+
+Buttons
+
+Increase Age
+
+Change Name
+
+const ShowHidePassword = () => {
+  const [user, setUser] = useState({ name: "karan", age: 35 });
+
+  const handleAge = () => {
+    const newAge = { ...user };
+    newAge.age = 40;
+    setUser(newAge);
+  };
+
+  const handleName = () => {
+    const newName = { ...user };
+    newName.name = "ABC";
+    setUser(newName);
+  };
+
+  return (
+    <div>
+      <p>
+        {user.name}, {user.age}
+      </p>
+      <button onClick={handleAge}>Increase age</button>
+      <button onClick={handleName}>Change Name</button>
+    </div>
+  );
+};
+
+23. Address
+{
+ city:"Pune",
+ state:"MH"
+}
+
+Update only city.
+
+const ShowHidePassword = () => {
+  const [user, setUser] = useState({
+    city: "Pune",
+    state: "MH",
+  });
+
+  const handleAddress = () => {
+    const newName = { ...user };
+    newName.city = "ABC";
+    setUser(newName);
+  };
+
+  return (
+    <div>
+      <p>
+        {user.city}, {user.state}
+      </p>
+      <button onClick={handleAddress}>Update City</button>
+    </div>
+  );
+};
+
+
+24. Toggle User Status
+{
+ active:true
+}
+25. Shopping Cart
+{
+ item:"Shoes",
+ quantity:1
+}
+
+Increase quantity.
+
+Decrease quantity.
