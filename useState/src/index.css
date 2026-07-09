@@ -2,8 +2,8 @@
     margin: 0;
     padding:0;
     box-sizing: border-box;
-    background-color: #111;
-    color: white;
+    /* background-color: #111;
+    color: white; */
 }
 
 html, body{
@@ -39,4 +39,14 @@ html, body{
     outline: none;
     font-weight: bold;
   
+}
+.dark {
+    background-color: #111;
+    min-height: 100vh;
+    width:100%
+}
+.light{
+background-color: bisque;
+min-height: 100vh;
+width: 100%
 }
