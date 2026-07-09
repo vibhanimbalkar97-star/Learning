@@ -2015,3 +2015,925 @@ React detects state changes by comparing references. Creating a new object or ar
 | 60       | Without the spread operator, you replace the entire object and lose any omitted properties. |
 
 ======================================================================================================================
+Level 7: Rendering
+61. What triggers a re-render?
+Answer
+
+A component re-renders when React detects that something affecting its output has changed.
+
+Common triggers are:
+
+State changes (useState)
+Props change
+Context value changes
+Parent component re-renders (unless optimized with React.memo)
+
+Example:
+
+const [count, setCount] = useState(0);
+
+<button onClick={() => setCount(count + 1)}>
+  Increase
+</button>
+
+Clicking the button updates the state, so React re-renders the component.
+
+62. Does every state update cause a re-render?
+Answer
+
+Usually yes, but React may skip a render if the new state is the same as the current state.
+
+Example:
+
+const [count, setCount] = useState(5);
+
+setCount(5);
+
+Since the value hasn't changed, React can skip re-rendering.
+
+63. What happens if the new state equals the old state?
+Answer
+
+React compares the old state and new state using Object.is().
+
+If they're the same, React skips re-rendering that state update.
+
+Example:
+
+const [name, setName] = useState("Vibha");
+
+setName("Vibha");
+
+React sees:
+
+Old = "Vibha"
+New = "Vibha"
+
+No UI update is needed.
+
+64. Why doesn't React always re-render?
+Answer
+
+React tries to avoid unnecessary work.
+
+If nothing has changed, rendering again would waste CPU time and reduce performance.
+
+Example:
+
+setCount(10);
+setCount(10);
+
+The second update doesn't change the state, so React can ignore it.
+
+65. How does React compare old and new state?
+Answer
+
+React uses Object.is() to compare the previous state and the new state.
+
+Examples:
+
+Object.is(10, 10)
+
+Result:
+
+true
+Object.is("React", "React")
+
+Result:
+
+true
+
+For objects:
+
+Object.is(
+  { name: "A" },
+  { name: "A" }
+)
+
+Result:
+
+false
+
+because they are different object references, even though their contents are the same.
+
+66. Does React compare object contents or references?
+Answer
+
+React compares references, not the contents.
+
+Example:
+
+const obj1 = { name: "Vibha" };
+const obj2 = { name: "Vibha" };
+
+console.log(obj1 === obj2);
+
+Output:
+
+false
+
+Although the properties match, they are different objects in memory.
+
+This is why React recommends creating new objects instead of mutating existing ones.
+
+67. Why is immutability useful for rendering?
+Answer
+
+Immutability creates a new object or array reference.
+
+React can quickly detect the new reference and know that something changed.
+
+Example:
+
+setUser((prev) => ({
+  ...prev,
+  age: 25,
+}));
+
+Benefits:
+
+Predictable updates
+Easier debugging
+Better performance
+Reliable re-renders
+68. What happens if state is updated during rendering?
+Answer
+
+Updating state during rendering causes React to render again immediately.
+
+If it keeps happening on every render, it creates an infinite render loop.
+
+❌ Wrong:
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  setCount(count + 1);
+
+  return <h1>{count}</h1>;
+}
+
+This causes:
+
+Render
+↓
+
+setCount()
+
+↓
+
+Render
+
+↓
+
+setCount()
+
+↓
+
+Render
+
+...
+
+React eventually throws an error.
+
+69. Can calling setState inside render cause problems?
+Answer
+
+✅ Yes.
+
+Calling a setter directly in the component body causes continuous re-renders.
+
+Example:
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  setCount(1);
+
+  return <h1>{count}</h1>;
+}
+
+React will display an error such as:
+
+Too many re-renders.
+React limits the number of renders to prevent an infinite loop.
+
+Instead, update state in:
+
+Event handlers
+useEffect
+Async callbacks
+API responses
+70. What is an infinite render loop?
+Answer
+
+An infinite render loop happens when each render triggers another render with no stopping condition.
+
+Example:
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  setCount(count + 1);
+
+  return <h1>{count}</h1>;
+}
+
+Flow:
+
+Render
+↓
+
+setCount()
+
+↓
+
+Render
+
+↓
+
+setCount()
+
+↓
+
+Render
+
+↓
+
+...
+
+React stops it and throws:
+
+Too many re-renders.
+Correct approach
+
+Update state in response to an event:
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Increase
+    </button>
+  );
+}
+
+or in an effect when appropriate:
+
+useEffect(() => {
+  setCount(1);
+}, []);
+
+The empty dependency array ([]) ensures the effect runs only once after the initial render.
+
+Answer:
+
+✅ onClick={() => setCount(count + 1)} passes a function to onClick. The state updates only when the button is clicked.
+❌ onClick={setCount(count + 1)} calls setCount immediately during rendering, which updates state while rendering and leads to repeated renders (or at least an unintended immediate update).
+
+| Question | Short Answer                                                                                   |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| 61       | State changes, prop changes, context changes, or parent renders can trigger a re-render.       |
+| 62       | Usually yes, but React may skip rendering if the new state is equal to the current state.      |
+| 63       | React compares old and new state using `Object.is()` and may skip the update if they're equal. |
+| 64       | React avoids unnecessary re-renders to improve performance.                                    |
+| 65       | React uses `Object.is()` to compare state values.                                              |
+| 66       | React compares object and array **references**, not their contents.                            |
+| 67       | Immutability creates new references, making it easy for React to detect changes.               |
+| 68       | Updating state during rendering can cause repeated renders.                                    |
+| 69       | Calling `setState` in the component body causes an infinite render loop and an error.          |
+| 70       | An infinite render loop happens when every render immediately schedules another render.        |
+=======================================================================================================================================================================
+Level 8: Forms
+71. What is a controlled component?
+Answer
+
+A controlled component is a form element whose value is controlled by React state.
+
+Instead of the browser managing the input value, React manages it using useState.
+
+Example:
+
+import { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+
+  return (
+    <input
+      type="text"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
+  );
+}
+
+Here:
+
+value={name} → React controls the input.
+onChange → Updates the state whenever the user types.
+72. Why use value with onChange?
+Answer
+
+They work together to make the input a controlled component.
+
+<input
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
+value displays the current state.
+onChange updates the state.
+
+Flow:
+
+User types
+      ↓
+onChange runs
+      ↓
+setName()
+      ↓
+State updates
+      ↓
+Component re-renders
+      ↓
+Input displays new value
+
+Without onChange, the input becomes read-only.
+
+73. Why is this incorrect?
+<input value={name} />
+
+without onChange.
+
+Answer
+
+The input becomes read-only.
+
+Example:
+
+const [name] = useState("Vibha");
+
+<input value={name} />
+
+You cannot type because React controls the value but never updates it.
+
+React even shows a warning similar to:
+
+You provided a `value` prop to a form field without an `onChange` handler.
+
+Correct:
+
+<input
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
+74. How do you handle multiple input fields?
+Answer
+
+A common approach is to store all fields in a single object.
+
+Example:
+
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+  phone: "",
+});
+
+Update a field:
+
+<input
+  name="name"
+  value={form.name}
+  onChange={(e) =>
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }))
+  }
+/>
+
+This same handler works for all inputs as long as each input has the correct name attribute.
+
+75. Should each input have separate state?
+Answer
+
+It depends on the form.
+
+For a small form:
+
+const [name, setName] = useState("");
+const [age, setAge] = useState("");
+
+This is perfectly fine.
+
+For a larger form:
+
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  password: "",
+});
+
+Using a single object is usually cleaner and easier to maintain.
+
+76. When is using a single object state better?
+Answer
+
+When multiple values belong together.
+
+Examples:
+
+Registration form
+Login form
+Employee form
+Profile form
+
+Example:
+
+const [form, setForm] = useState({
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+});
+
+Benefits:
+
+Easier to pass around as one object.
+One reset clears the entire form.
+Fewer state variables.
+77. How do you reset a form?
+Answer
+
+Set the state back to its initial values.
+
+Example:
+
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+});
+
+Reset:
+
+setForm({
+  name: "",
+  email: "",
+});
+
+Button:
+
+<button
+  onClick={() =>
+    setForm({
+      name: "",
+      email: "",
+    })
+  }
+>
+  Reset
+</button>
+78. How do you update only one field?
+Answer
+
+Use the spread operator.
+
+Example:
+
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+});
+
+Update only email:
+
+setForm((prev) => ({
+  ...prev,
+  email: "vibha@gmail.com",
+}));
+
+Result:
+
+Before:
+
+{
+  name: "Vibha",
+  email: ""
+}
+
+After:
+
+{
+  name: "Vibha",
+  email: "vibha@gmail.com"
+}
+
+Only the email field changes.
+
+79. Why do forms re-render on every keystroke?
+Answer
+
+Because every keystroke updates the state.
+
+Example:
+
+<input
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
+
+Typing:
+
+H
+
+calls:
+
+setName("H");
+
+Typing:
+
+He
+
+calls:
+
+setName("He");
+
+Each setName() updates state, so React re-renders the component to keep the UI in sync.
+
+80. Is that expected?
+Answer
+
+✅ Yes.
+
+This is normal behavior in React.
+
+React is optimized to handle frequent re-renders efficiently.
+
+If performance becomes an issue (for example, a very large form or expensive calculations), you can optimize using:
+
+React.memo
+useMemo
+useCallback
+Debouncing user input
+Splitting large forms into smaller components
+
+For normal forms, re-rendering on each keystroke is expected and not a problem.
+
+⭐ Common Interview Question
+
+Q: What is the difference between a controlled component and an uncontrolled component?
+
+Controlled component:
+
+const [name, setName] = useState("");
+
+<input
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+/>
+React controls the value.
+Easy to validate, reset, and manipulate.
+
+Uncontrolled component:
+
+<input type="text" />
+
+or using a ref:
+
+const inputRef = useRef();
+
+<input ref={inputRef} />
+The browser manages the input value.
+React reads the value only when needed (often using useRef).
+Simpler in some cases, but less flexible for validation and dynamic updates.
+
+| Question | Short Answer                                                                                |
+| -------- | ------------------------------------------------------------------------------------------- |
+| 71       | A controlled component is a form element whose value is managed by React state.             |
+| 72       | `value` displays the state and `onChange` updates it.                                       |
+| 73       | Without `onChange`, a controlled input becomes read-only.                                   |
+| 74       | Use a single object state and update fields using the input's `name` attribute.             |
+| 75       | Small forms can use separate states; larger forms often benefit from a single object state. |
+| 76       | A single object state is better when form fields belong together.                           |
+| 77       | Reset a form by setting the state back to its initial values.                               |
+| 78       | Use the spread operator to update only one field while preserving the others.               |
+| 79       | Forms re-render because each keystroke updates state.                                       |
+| 80       | Yes, this is expected and React is designed to handle it efficiently.                       |
+=======================================================================================================================================
+Level 9: Tricky Questions
+81. Why is this wrong?
+const [user] = useState({ name: "Vibha" });
+
+user.name = "John";
+Answer
+
+This directly mutates the state object.
+
+Although the object's property changes, React doesn't know about it because the setter function (setUser) was never called.
+
+❌ Wrong:
+
+user.name = "John";
+
+✅ Correct:
+
+const [user, setUser] = useState({
+  name: "Vibha",
+});
+
+setUser((prev) => ({
+  ...prev,
+  name: "John",
+}));
+Interview Tip
+
+Never modify state directly. Always use the setter function.
+
+82. What happens here?
+const [count, setCount] = useState(0);
+
+console.log(count);
+
+setCount(1);
+
+console.log(count);
+Answer
+
+Output:
+
+0
+0
+Why?
+
+When setCount(1) is called, React schedules the update.
+
+The current function continues executing with the old value.
+
+Only after React re-renders will count become:
+
+1
+Common Interview Question
+
+Will the second console.log() print 1?
+
+❌ No.
+
+It still prints the old value because the component hasn't re-rendered yet.
+
+83. Why is this incorrect?
+const [count, setCount] = useState(0);
+
+setCount(count + 1);
+
+setCount(count + 1);
+
+setCount(count + 1);
+Answer
+
+Assume:
+
+count = 0
+
+Each line becomes:
+
+setCount(1);
+setCount(1);
+setCount(1);
+
+Final result:
+
+count = 1
+
+Not:
+
+3
+
+because all three updates use the same stale value (0).
+
+Correct way
+setCount((prev) => prev + 1);
+setCount((prev) => prev + 1);
+setCount((prev) => prev + 1);
+
+Now:
+
+0 → 1 → 2 → 3
+
+Final value:
+
+count = 3
+84. Why does this work?
+setCount((prev) => prev + 1);
+
+three times.
+
+Answer
+
+Each updater receives the latest state value.
+
+Starting with:
+
+count = 0
+
+Flow:
+
+First:
+0 → 1
+
+Second:
+1 → 2
+
+Third:
+2 → 3
+
+Final value:
+
+count = 3
+
+React executes each updater in sequence using the latest available state.
+
+85. Can state updates be skipped?
+Answer
+
+✅ Yes.
+
+React skips a state update if the new value is equal to the current value.
+
+Example:
+
+const [count, setCount] = useState(5);
+
+setCount(5);
+
+Since the value didn't change, React can skip the re-render.
+
+React determines this using Object.is().
+
+86. Why shouldn't Hooks be called conditionally?
+Answer
+
+Hooks must always be called in the same order on every render.
+
+❌ Wrong:
+
+if (isLoggedIn) {
+  const [name, setName] = useState("");
+}
+
+If isLoggedIn changes, the order of Hooks changes.
+
+React won't know which state belongs to which Hook.
+
+Correct
+const [name, setName] = useState("");
+
+if (isLoggedIn) {
+  console.log(name);
+}
+
+The Hook is always called; only the logic is conditional.
+
+87. Can you call useState inside a loop?
+Answer
+
+❌ No.
+
+Example:
+
+for (let i = 0; i < 5; i++) {
+  const [count, setCount] = useState(0);
+}
+
+This violates the Rules of Hooks because the number of Hook calls can vary.
+
+Hooks should only be called at the top level of a component or a custom Hook.
+
+88. Can you call useState inside an if statement?
+Answer
+
+❌ No.
+
+Example:
+
+if (show) {
+  const [count, setCount] = useState(0);
+}
+
+If show changes between renders, the Hook order changes, causing bugs.
+
+Correct:
+
+const [count, setCount] = useState(0);
+
+if (show) {
+  console.log(count);
+}
+
+The Hook call stays at the top level.
+
+89. Why must Hooks always be called in the same order?
+Answer
+
+React identifies Hooks by their call order, not by their variable names.
+
+Example:
+
+const [name, setName] = useState("");
+const [age, setAge] = useState(20);
+
+React remembers:
+
+Hook #1 → name
+Hook #2 → age
+
+If you skip the first Hook on a later render:
+
+if (show) {
+  const [name, setName] = useState("");
+}
+
+const [age, setAge] = useState(20);
+
+React now sees:
+
+Hook #1 → age
+
+It mistakenly assigns the previous state of name to age, leading to incorrect behavior.
+
+90. What happens if the order changes?
+Answer
+
+React can no longer match state values with the correct Hooks.
+
+This can cause:
+
+Incorrect state values
+Runtime errors
+Unpredictable behavior
+
+React may show an error like:
+
+Rendered fewer hooks than expected.
+
+or
+
+Rendered more hooks than during the previous render.
+Correct Rule
+
+Always call Hooks:
+
+✅ At the top level of a React function component.
+✅ At the top level of a custom Hook.
+
+Never call them:
+
+❌ Inside if statements
+❌ Inside loops
+❌ Inside nested functions
+❌ Inside event handlers
+
+⭐ Bonus Interview Question
+
+Q: Why doesn't React identify Hooks by variable names?
+
+Example:
+
+const [count, setCount] = useState(0);
+const [name, setName] = useState("");
+
+React does not store:
+
+count
+name
+
+Instead, it internally tracks them by position:
+
+Hook #1 → useState(0)
+Hook #2 → useState("")
+
+That's why renaming variables is fine:
+
+const [value, setValue] = useState(0);
+
+works exactly the same as:
+
+const [count, setCount] = useState(0);
+
+The variable names are for your code only; React relies on the order in which Hooks are called.
+
+| Question | Short Answer                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------------- |
+| 81       | Don't mutate state directly; always use the setter function.                                    |
+| 82       | `setState` is scheduled, so `console.log()` still prints the old value in the current render.   |
+| 83       | Multiple `setCount(count + 1)` calls use the same stale value, so the final result is `1`.      |
+| 84       | Functional updates (`prev => prev + 1`) use the latest state, so three updates result in `3`.   |
+| 85       | Yes. React can skip a re-render if the new state equals the current state (`Object.is()`).      |
+| 86       | Hooks must not be called conditionally because their order must remain the same across renders. |
+| 87       | No. `useState` cannot be called inside loops.                                                   |
+| 88       | No. `useState` cannot be called inside `if` statements.                                         |
+| 89       | React tracks Hooks by their call order, so the order must always be consistent.                 |
+| 90       | Changing the Hook order can cause incorrect state mapping and runtime errors.                   |
+===========================================================================================================================
