@@ -22,4 +22,135 @@ let name = "JavaScript";
 
 Note: In React, avoid mutating state directly. Methods like push(), pop(), shift(), unshift(), splice(), sort(), and reverse() modify the original array, so it's usually better to create a copy first (for example, using the spread operator).
 
-concat 
+split 
+To parse irregular spacing or multiple punctuation types at once, you can pass a Regular Expression as your separator
+ "apple, banana; orange".split(/[,;]\s*/); // ['apple', 'banana', 'orange']
+
+
+Q: Why use a Regular Expression with split()?
+
+Answer:
+
+Because a regular expression lets you split a string using multiple delimiters (such as commas, spaces, semicolons, tabs, etc.) or handle irregular spacing with a single split() call.
+
+| Regex      | Meaning                                    | Example                         |
+| ---------- | ------------------------------------------ | ------------------------------- |
+| `/\s+/`    | Split on one or more whitespace characters | `"React   JS".split(/\s+/)`     |
+| `/,/`      | Split on comma                             | `"A,B,C".split(/,/)`            |
+| `/[ ,;]+/` | Split on comma, space, or semicolon        | `"A,B;C D".split(/[ ,;]+/)`     |
+| `/[-_]/`   | Split on `-` or `_`                        | `"React_JS-HTML".split(/[-_]/)` |
+
+What is \s+?
+\s = any whitespace (space, tab, newline)
++ = one or more
+
+/[ ,;]+/
+
+Break it down:
+
+[ ] → Match any one character inside the brackets.
+, → comma
+; → semicolon
+→ space
++ → one or more occurrences
+
+So it means:
+
+Split on one or more commas, semicolons, or spaces.
+
+ 
+// By Space (Get words)
+//  const str="React JavaScript";
+    // const res = str.split(" ") //['React', 'JavaScript']
+
+    // By Comma
+  //  const str="apple,banana";
+  //  const res = str.split(",") // ['apple', 'banana']
+
+  // By Each Character
+  //  const str="apple";
+  //  const res = str.split("") // ['a', 'p', 'p', 'l', 'e']
+
+   // With a Limit
+  //  const str="a-b-c-d";
+  //  const res = str.split("-", 3) // ['a', 'b', 'c']
+
+   // No Separator
+  //  const str="a-b-c-d";
+  //  const res = str.split() // ['a-b-c-d']
+
+  //  const str="apple,mango,banana";
+  //  const res = str.split(",") // ['a-b-c-d']
+
+  // Regular Expression as your separator
+    const str="a-b-c-d";
+   const res = str.split(/-+/) // ['a', 'b', 'c', 'd']
+
+  console.log(res);
+
+  ===============================================================================
+ trim = only start and end space removed not in between
+
+ const str = " React "
+
+  const res = str.trim()
+  console.log(res)
+
+  const str = " Re  ac t ";
+
+  const res = str.trim().split(" ");
+  console.log(res); //['Re', '', 'ac', 't']
+
+  const str = " 11 12  45 ";
+
+  const res = str.trim().split(" ");
+  console.log((res.map(Number))); //[11, 12, 0, 45]
+
+===============================================================================
+startsWith()
+
+ const str = "JavaScript";
+
+  // const res = str.startsWith("JAVA") //false
+  const res = str.startsWith("Java");
+  console.log(res); //true
+
+  ===============================================================================================
+
+  endsWith()
+    const str = "photo.png";
+
+  const res = str.endsWith("png");
+  console.log(res); //true
+
+==============================================================================
+replace()
+const str = "photo";
+
+  const res = str.replace("photo", "ABC");
+  console.log(res); //ABC
+
+============================================================================
+replaceAll()
+
+  const str = "apple applee";
+
+  const res = str.replaceAll("apple", "ABC");
+  console.log(res); //ABC ABCe
+
+  ============================================================================
+22. toUpperCase()
+23. toLowerCase()
+24. charAt()
+25. substring()
+
+ const str = "applE";
+
+  // const res = str.toUpperCase(); //APPLE
+  // const res = str.toLowerCase(); //apple
+  // const res = str.charAt(4); //E
+  const res = str.substring(1,3); //PP
+  const res = Array.from("react"); //['r', 'e', 'a', 'c', 't']
+
+  console.log(res); 
+  =================================================================================

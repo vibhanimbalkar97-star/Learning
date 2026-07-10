@@ -30,7 +30,7 @@ splice() = change original array. Gives middle element.
 
 
 String Methods
-✅ split()
+✅ split()=method breaks a string into an array of substrings based on a specified separator.
 ✅ trim()
 ✅ replace()
 ✅ replaceAll()
