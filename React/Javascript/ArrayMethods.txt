@@ -622,3 +622,49 @@ const n = [
   console.log(res);
   =========================================================================
 
+concat
+Merge two arrays.
+
+const a = [1, 2];
+  const b = [3, 4];
+
+  //  const res = a.concat(b)
+
+  const res = b.concat(a);
+
+  console.log(res);
+
+  ===========================================================================
+
+   const a = [
+    { name: "John", age: 30 },
+    { name: "Ram", age: 20 },
+    { name: "Amit", age: 25 },
+  ];
+  const b = [
+    { name: "A", age: 30 },
+    { name: "B", age: 20 },
+    { name: "C", age: 25 },
+  ];;;
+
+   const res = a.concat(b)
+
+  // const res = b.concat(a);
+
+  console.log(res);
+
+  ==========================================================================
+
+  join 
+
+    const a = [
+    { name: "John", age: 30 },
+    { name: "Ram", age: 20 },
+    { name: "Amit", age: 25 },
+  ];
+
+    const res = a.map((item) => (item.name)).join("-")
+
+  console.log(res);
+
+  =====================================================================================

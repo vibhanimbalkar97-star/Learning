@@ -21,3 +21,5 @@ let name = "JavaScript";
 | `concat()`      | Join strings             | `"Hello".concat(" World")`            |
 
 Note: In React, avoid mutating state directly. Methods like push(), pop(), shift(), unshift(), splice(), sort(), and reverse() modify the original array, so it's usually better to create a copy first (for example, using the spread operator).
+
+concat 
