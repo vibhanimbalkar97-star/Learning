@@ -1,0 +1,14 @@
+const user = {
+  name: "John",
+  age: 25
+};
+
+| Method             | Purpose                            |
+| ------------------ | ---------------------------------- |
+| `Object.keys()`    | Get keys                           |
+| `Object.values()`  | Get values                         |
+| `Object.entries()` | Get key-value pairs                |
+| `Object.assign()`  | Copy object                        |
+| `Object.freeze()`  | Prevent changes                    |
+| `Object.seal()`    | Prevent adding/removing properties |
+| `hasOwnProperty()` | Check property exists              |

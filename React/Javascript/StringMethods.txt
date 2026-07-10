@@ -1,0 +1,23 @@
+let name = "JavaScript";
+
+| Method          | Purpose                  | Example                               |
+| --------------- | ------------------------ | ------------------------------------- |
+| `length`        | Count characters         | `name.length`                         |
+| `toUpperCase()` | Convert to uppercase     | `"react".toUpperCase()`               |
+| `toLowerCase()` | Convert to lowercase     | `"REACT".toLowerCase()`               |
+| `trim()`        | Remove spaces            | `" React ".trim()`                    |
+| `includes()`    | Check text exists        | `"React".includes("ea")`              |
+| `startsWith()`  | Starts with?             | `"React".startsWith("Re")`            |
+| `endsWith()`    | Ends with?               | `"photo.png".endsWith(".png")`        |
+| `replace()`     | Replace first occurrence | `"Hello React".replace("React","JS")` |
+| `replaceAll()`  | Replace all occurrences  | `"a a".replaceAll("a","b")`           |
+| `split()`       | Convert string to array  | `"A,B,C".split(",")`                  |
+| `substring()`   | Extract part             | `"JavaScript".substring(0,4)`         |
+| `slice()`       | Extract part             | `"JavaScript".slice(4)`               |
+| `charAt()`      | Character at index       | `"React".charAt(2)`                   |
+| `indexOf()`     | Find index               | `"React".indexOf("a")`                |
+| `lastIndexOf()` | Last occurrence          | `"banana".lastIndexOf("a")`           |
+| `repeat()`      | Repeat string            | `"Hi".repeat(3)`                      |
+| `concat()`      | Join strings             | `"Hello".concat(" World")`            |
+
+Note: In React, avoid mutating state directly. Methods like push(), pop(), shift(), unshift(), splice(), sort(), and reverse() modify the original array, so it's usually better to create a copy first (for example, using the spread operator).

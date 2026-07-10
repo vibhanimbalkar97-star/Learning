@@ -1,0 +1,11 @@
+let num = 12.456;
+
+| Method         | Purpose               |
+| -------------- | --------------------- |
+| `toFixed()`    | Fixed decimal places  |
+| `toString()`   | Number → String       |
+| `parseInt()`   | String → Integer      |
+| `parseFloat()` | String → Decimal      |
+| `Number()`     | Convert to number     |
+| `isNaN()`      | Check if not a number |
+| `isFinite()`   | Check finite number   |

@@ -1,0 +1,64 @@
+React-Focused Practice Problems (Use These Methods)
+Display a list of users using map().
+Show only completed tasks using filter().
+Search a product by ID using find().
+Calculate the cart total using reduce().
+Check if any product is out of stock using some().
+Verify all form fields are filled using every().
+Sort products by price using sort().
+Update a user's name using the spread operator (...).
+Remove an item from a list using filter().
+Add a new item to an array using the spread operator (...).
+Toggle a task's completed status using map().
+Find the index of an item with findIndex(), then update or remove it.
+Convert a comma-separated string into an array using split().
+Display object properties using Object.keys(), Object.values(), or Object.entries().
+Safely access nested data (e.g., user.profile?.email) using optional chaining.
+Priority Order for React Developers
+
+If you have limited time, master these first:
+
+map()
+filter()
+find()
+reduce()
+some()
+every()
+Spread operator (...)
+Destructuring
+sort()
+findIndex()
+Object.keys(), Object.values(), Object.entries()
+includes()
+slice()
+split()
+Optional chaining (?.)
+
+
+const arr = [10,20,30];
+
+| Method        | Purpose                 | React Usage |
+| ------------- | ----------------------- | ----------- |
+| `map()`       | Create new array        | ⭐⭐⭐⭐⭐       |
+| `filter()`    | Filter items            | ⭐⭐⭐⭐⭐       |
+| `find()`      | Find one item           | ⭐⭐⭐⭐⭐       |
+| `findIndex()` | Find index              | ⭐⭐⭐⭐        |
+| `reduce()`    | Calculate total         | ⭐⭐⭐⭐⭐       |
+| `some()`      | Any match?              | ⭐⭐⭐⭐        |
+| `every()`     | All match?              | ⭐⭐⭐⭐        |
+| `includes()`  | Value exists?           | ⭐⭐⭐         |
+| `indexOf()`   | Find index              | ⭐⭐⭐         |
+| `push()`      | Add at end (mutates)    | ⭐           |
+| `pop()`       | Remove last (mutates)   | ⭐           |
+| `shift()`     | Remove first (mutates)  | ⭐           |
+| `unshift()`   | Add first (mutates)     | ⭐           |
+| `slice()`     | Copy part               | ⭐⭐⭐⭐        |
+| `splice()`    | Remove/insert (mutates) | ⭐⭐          |
+| `sort()`      | Sort array              | ⭐⭐⭐⭐        |
+| `reverse()`   | Reverse array           | ⭐⭐⭐         |
+| `join()`      | Array → String          | ⭐⭐⭐         |
+| `concat()`    | Merge arrays            | ⭐⭐⭐         |
+| `flat()`      | Flatten nested arrays   | ⭐⭐⭐         |
+| `flatMap()`   | Map + flatten           | ⭐⭐⭐         |
+| `forEach()`   | Loop                    | ⭐⭐⭐         |
+| `at()`        | Get element by index    | ⭐⭐          |

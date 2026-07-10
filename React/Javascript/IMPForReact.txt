@@ -1,0 +1,34 @@
+Most Important for React Interviews
+
+Focus on these first:
+
+Array Methods (Highest Priority)
+✅ map()
+✅ filter()
+✅ find()
+✅ findIndex()
+✅ reduce()
+✅ some()
+✅ every()
+✅ sort()
+✅ slice()
+✅ includes()
+✅ forEach()
+String Methods
+✅ split()
+✅ trim()
+✅ replace()
+✅ replaceAll()
+✅ includes()
+✅ startsWith()
+✅ endsWith()
+✅ toUpperCase()
+✅ toLowerCase()
+Object Features
+✅ Object.keys()
+✅ Object.values()
+✅ Object.entries()
+✅ Spread operator (...)
+✅ Destructuring
+✅ Optional chaining (?.)
+✅ Nullish coalescing (??)

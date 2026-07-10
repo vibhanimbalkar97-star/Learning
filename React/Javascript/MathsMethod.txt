@@ -1,0 +1,11 @@
+| Method          | Purpose          |
+| --------------- | ---------------- |
+| `Math.max()`    | Maximum value    |
+| `Math.min()`    | Minimum value    |
+| `Math.floor()`  | Round down       |
+| `Math.ceil()`   | Round up         |
+| `Math.round()`  | Round to nearest |
+| `Math.random()` | Random number    |
+| `Math.pow()`    | Power            |
+| `Math.sqrt()`   | Square root      |
+| `Math.abs()`    | Absolute value   |

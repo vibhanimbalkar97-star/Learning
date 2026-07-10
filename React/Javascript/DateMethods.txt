@@ -1,0 +1,13 @@
+const date = new Date();
+
+| Method                 | Purpose        |
+| ---------------------- | -------------- |
+| `getFullYear()`        | Year           |
+| `getMonth()`           | Month          |
+| `getDate()`            | Day of month   |
+| `getDay()`             | Day of week    |
+| `getHours()`           | Hours          |
+| `getMinutes()`         | Minutes        |
+| `getSeconds()`         | Seconds        |
+| `toLocaleDateString()` | Formatted date |
+| `toLocaleTimeString()` | Formatted time |
