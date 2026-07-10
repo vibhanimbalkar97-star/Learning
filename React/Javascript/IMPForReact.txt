@@ -3,17 +3,32 @@ Most Important for React Interviews
 Focus on these first:
 
 Array Methods (Highest Priority)
-✅ map()
-✅ filter()
-✅ find()
-✅ findIndex()
-✅ reduce()
-✅ some()
-✅ every()
-✅ sort()
-✅ slice()
-✅ includes()
-✅ forEach()
+✅ map() = Purpose: Transform every item in an array.
+✅ filter() = Returns only matching items.
+✅ find() = Returns only the first matching item.
+✅ findIndex() =  returns the index of the first element in an array that satisfies a given testing condition, returning -1 if no match is found.
+✅ reduce() = reduces an array to a single value by executing a callback function on each element.
+✅ some()=Returns true if at least one element matches. gives false and true result.
+✅ every() = Returns true if all satisfy condition.
+✅ sort() = sort array in ascending order
+Why are a and b taken?
+
+The sort() method automatically picks two elements from the array and passes them to your callback function.
+a = first element being compared
+b = second element being compared
+You don't call the function yourself. JavaScript does it internally.
+
+✅ slice() = Doesn't change original array.
+splice() = change original array. Gives middle element.
+✅ includes()= checks if an array or a string contains a specific value. It returns true if the value is found, and false if it is not.
+✅ forEach()=iterate through array but not return value.
+  indexOf()=method finds the first position of a value in an array or string and returns its 0-based index, or -1 if the value is not found.
+
+  Easy rule to remember
+✅ indexOf() → Array of strings/numbers, arrays of primitive values (strings, numbers, booleans).
+✅ findIndex() → Array of objects
+
+
 String Methods
 ✅ split()
 ✅ trim()

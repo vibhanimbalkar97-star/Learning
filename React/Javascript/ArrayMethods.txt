@@ -34,6 +34,38 @@ slice()
 split()
 Optional chaining (?.)
 
+Why are a and b taken?
+
+The sort() method automatically picks two elements from the array and passes them to your callback function.
+
+a = first element being compared
+b = second element being compared
+
+You don't call the function yourself. JavaScript does it internally.
+
+Interview Tip
+
+Remember this rule:
+
+Numbers → a - b or b - a
+Strings → a.localeCompare(b) or b.localeCompare(a)
+
+Why localeCompare()?
+
+localeCompare() compares two strings alphabetically.
+
+console.log("Amit".localeCompare("John")); // -1
+console.log("John".localeCompare("Amit")); // 1
+console.log("John".localeCompare("John")); // 0
+
+It returns:
+
+Negative → first string comes before the second.
+Positive → first string comes after the second.
+0 → both strings are equal.
+
+sort() uses these return values to arrange the array.
+
 
 const arr = [10,20,30];
 
@@ -62,3 +94,531 @@ const arr = [10,20,30];
 | `flatMap()`   | Map + flatten           | ⭐⭐⭐         |
 | `forEach()`   | Loop                    | ⭐⭐⭐         |
 | `at()`        | Get element by index    | ⭐⭐          |
+
+1 map() 
+
+Input:
+["john","ram","amit"]
+
+Output:
+["JOHN","RAM","AMIT"]
+
+  const names = ["john", "ram", "amit"];
+
+  return (
+    <div>
+      <ul>
+        {names.map((name) => (
+          <li>{name.toUpperCase()}</li>
+        ))}
+      </ul>
+    </div>
+  );
+========================================================================================
+Input:
+[
+ {id:1,name:"John"},
+ {id:2,name:"Ram"}
+]
+
+Output:
+["John","Ram"]
+
+  const names = [
+ {id:1,name:"John"},
+ {id:2,name:"Ram"}
+]
+
+  return (
+    <div>
+      <ul>
+        {names.map((name, i) => (
+         <div key={i}>
+            {name.name}
+         </div>
+        ))}
+      </ul>
+    </div>
+  );
+
+======================================================================================
+
+["John","Ram"]
+
+Output
+
+["Mr. John","Mr. Ram"]
+
+  const names = ["John","Ram"]
+
+  return (
+    <div>
+      <ul>
+        {names.map((name, i) => (
+         <div key={i}>
+            {`Mr. ${name}`}
+         </div>
+        ))}
+      </ul>
+    </div>
+  );
+  =====================================================================
+
+  2 filter()
+Find even numbers.
+
+[2,5,6,9,10]
+
+Output
+
+[2,6,10]
+
+  const n = [2, 5, 6, 9, 10];
+
+  const even = n.filter((num) => num % 2 === 0);
+
+  return (
+    <div>
+      <p>[{even.join(",")}]</p>
+      <p>{JSON.stringify(even)}</p>
+    </div>
+  );
+
+  ==========================================================================
+  Find names starting with A.
+
+["John","Amit","Ajay","Ram"]
+
+Output
+
+["Amit","Ajay"]
+
+  const n = ["John","Amit","Ajay","Ram"];
+
+  const start= n.filter(name => name.startsWith("A"));
+
+  return (
+    <div>
+      <p>[{start.join(",")}]</p>
+    </div>
+  );
+
+===============================================================================
+
+Filter users whose age is greater than 18.
+
+[
+{name:"John",age:15},
+{name:"Ram",age:25},
+{name:"Amit",age:30}
+]
+
+ const n = [
+    { name: "John", age: 15 },
+    { name: "Ram", age: 25 },
+    { name: "Amit", age: 30 },
+  ];
+
+  const greater = n.filter((a) => a.age > 18);
+  console.log(greater);
+
+  return (
+    <div>
+      {/* <ul>
+        {
+            greater.map((item, i) => (
+                <div key={i}>
+                    <li>{item.name} - {item.age}</li>
+                </div>
+            ))
+        }
+      </ul> */}
+      {/* <p>{JSON.stringify(greater)}</p> */}
+      {/* <pre>{JSON.stringify(greater, null, 1)}</pre> */}
+    </div>
+  );
+
+Three ways to display array of object in react UI:
+1) using map => map over the result
+2) using  JSON.stringify
+3) pretty json format
+
+React can render:
+
+✅ Strings
+✅ Numbers
+✅ JSX elements
+✅ Arrays of JSX elements
+
+React cannot render:
+
+❌ Plain objects
+
+That's why you either:
+
+convert the objects to JSX using map(), or
+convert the array to a string using JSON.stringify()
+
+
+
+Interview Tip
+
+If the interviewer asks:
+
+How do you display an array of objects in React?
+
+The expected answer is:
+
+Use map() to iterate over the array and return JSX for each object, providing a unique key prop for each rendered element.
+==========================================================================================================================================
+3 find()
+
+Find user whose id is 3.
+[
+{id:3,name:"Karan"}
+{id:1,name:"John"},
+{id:2,name:"Ram"},
+{id:3,name:"Amit"}
+]
+
+const n = [
+    { id: 3, name: "Karan" },
+    { id: 1, name: "John" },
+    { id: 2, name: "Ram" },
+    { id: 3, name: "Amit" },
+  ];
+
+  const firstMatch = n.find((item) => item.id === 3);
+  console.log(firstMatch);
+
+  return (
+    <div>
+      <p>{JSON.stringify(firstMatch)}</p>
+    </div>
+  );
+  ============================================================================
+
+  4) findIndex()
+
+   const n = [
+    { id: 4, name: "Karan" },
+    { id: 1, name: "John" },
+    { id: 2, name: "Ram" },
+    { id: 3, name: "Amit" },
+  ];
+
+  const res = n.findIndex((item) => item.id === 3);
+  console.log(res);
+
+  =============================================================================
+
+  5) some()
+
+  Check if any student scored above 90.
+
+[45,60,95,80]
+const n = [45,60,95,80]
+
+  const res = n.some((item) => item > 90);
+  console.log(res);
+
+  ===============================================================================
+
+  6. every()
+
+Check if all users are adults.
+
+[
+{age:20},
+{age:25},
+{age:15}
+]
+
+const n = [
+{age:20},
+{age:25},
+{age:15}
+]
+  const res = n.every((item) => item.age > 18);
+  console.log(res);
+
+============================================================================
+7. reduce()
+array.reduce((accumulator, currentValue) => expression, initialValue);
+Core Concepts
+Accumulator: Stores the ongoing accumulated result.
+Current Value: The current element being processed.
+Initial Value: The starting value of the accumulator.
+
+Interview Tip
+
+A simple way to remember acc and curr is:
+
+acc (Accumulator): Holds the result built up from previous iterations.
+curr (Current): The element currently being processed.
+
+Find sum.
+
+[10,20,30]
+
+  const n = [10,20,30]
+  
+  const res = n.reduce((acc, curr) => acc + curr, 0);
+  console.log(res);
+
+  return (
+    <div>
+      <p>{res}</p>
+    </div>
+  );
+
+================================================================================
+Find maximum.
+
+[20,10,50,30]
+
+ const n = [20,10,50,30]
+  
+  const res = n.reduce((acc, curr) => (
+    acc > curr ? acc : curr
+  ));
+  console.log(res);
+
+  return (
+    <div>
+      <p>{res}</p>
+    </div>
+  );
+
+| Iteration | acc | curr |
+| --------- | --: | ---: |
+| 1         |   0 |   20 |
+| 2         |  20 |   10 |
+| 3         |  20 |   50 |
+| 4         |  50 |   30 |
+
+
+Easy rule to remember
+
+Whenever you see reduce(), ask yourself:
+
+What single value do I want at the end?
+
+Examples:
+
+Sum → one number
+Maximum → one number
+Minimum → one number
+Average → one number
+Total Price → one number
+Count → one number
+One object → one object
+
+==================================================================================
+Count total products.
+
+[
+{name:"Pen",qty:2},
+{name:"Book",qty:5},
+{name:"Bag",qty:1}
+]
+
+  const n = [
+{name:"Pen",qty:2},
+{name:"Book",qty:5},
+{name:"Bag",qty:1}
+]
+  const res = n.reduce((acc, curr) => {
+    return acc + curr.qty
+  },0 )
+  console.log(res);
+
+  return (
+    <div>
+      <p>{res}</p>
+    </div>
+  );
+
+The important thing to remember is:
+
+In reduce(), acc can be anything:
+
+Number (sum, max, count)
+String
+Array
+Object
+
+curr is always the current array element being processed.
+===========================================================================
+Find total price.
+
+[
+{price:100},
+{price:200},
+{price:300}
+]
+
+  const n = [
+{price:100},
+{price:200},
+{price:300}
+]
+  const res = n.reduce((acc, curr) => {
+    return acc + curr.price
+  },0 )
+  console.log(res);
+
+  return (
+    <div>
+      <p>{res}</p>
+    </div>
+  );
+
+  ===========================================================================
+
+8. includes()
+
+Check if "React" exists.
+
+["HTML","CSS","React"]
+
+  const n = ["HTML","CSS","React"]
+
+  const res = n.includes("react")
+  console.log(res);
+
+  return (
+    <div>
+      <p>{res ? 'true' : 'false'}</p>
+    </div>
+  );
+
+  ======================================================================
+9 indexof()
+
+   const n = ["HTML","React","CSS","React"]
+
+  const res = n.indexOf("React")
+  console.log(res);
+
+  return (
+    <div>
+      <p>{res ? 'true' : 'false'}</p>
+    </div>
+  );
+
+  ===========================================================================
+
+  10 sort()
+
+ const n = ["D", "A" ,"B"]
+
+  const res = n.sort((a,b) => b.localeCompare(a))
+  console.log(res);
+
+  return (
+    <div>
+      <p>{res}</p>
+    </div>
+  );
+
+================================================================================
+
+  const users = [
+  { name: "John", age: 30 },
+  { name: "Ram", age: 20 },
+  { name: "Amit", age: 25 },
+];
+
+ //  by age
+  // const res = n.sort((a,b) => a.age - b.age)
+  // console.log(res);
+
+  // by name
+  const res = n.sort((a, b) => a.name.localeCompare(b.name));
+
+  console.log(res);
+
+Interview Tip
+
+Remember this rule:
+
+Numbers → a - b or b - a
+Strings → a.localeCompare(b) or b.localeCompare(a)
+
+Why localeCompare()?
+
+localeCompare() compares two strings alphabetically.
+
+console.log("Amit".localeCompare("John")); // -1
+console.log("John".localeCompare("Amit")); // 1
+console.log("John".localeCompare("John")); // 0
+
+It returns:
+
+Negative → first string comes before the second.
+Positive → first string comes after the second.
+0 → both strings are equal.
+
+sort() uses these return values to arrange the array.
+================================================================================
+
+11 reverse()
+const n = [
+    { name: "John", age: 30 },
+    { name: "Ram", age: 20 },
+    { name: "Amit", age: 25 },
+  ];
+ const res = n.reverse()
+
+  console.log(res);
+
+  
+
+===============================================================================
+ const n = ["ABC", "HMN", "RST"];
+  
+ const res = n.reverse()
+
+  console.log(res);
+
+  ==============================================================================
+
+  slice()
+
+  const n = [10,20,30,40];
+
+ const res = n.slice(1,2)
+
+  console.log(n,res);
+
+   const n =  [
+    { name: "John", age: 30 },
+    { name: "Ram", age: 20 },
+    { name: "Amit", age: 25 },
+  ];;
+
+ const res = n.slice(0,2)
+
+  console.log(res);
+
+  ======================================================================
+  splice()
+
+   const n = [10,20,30];
+
+ const res = n.splice(1,1)
+
+  console.log(n,res);
+
+    const n =  [
+    { name: "John", age: 30 },
+    { name: "Ram", age: 20 },
+    { name: "Amit", age: 25 },
+  ];;
+
+ const res = n.splice(1,1)
+
+  console.log(res);
+  =========================================================================
+

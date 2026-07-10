@@ -6,17 +6,18 @@ const ShowHidePassword = () => {
   });
 
   const handleStatus = () => {
-    const newStatus = { ...user };
-    newStatus.active = false;
-    setUser(newStatus);
-    console.log(newStatus)
+    setUser(prev => ({
+      ...prev,
+      active: !prev.active
+    }))
   };
 
   return (
     <div>
-      <p>
-        {user.active}
-      </p>
+      {
+       
+        user.active ? 'Active' : 'Not active'
+      }
       <button onClick={handleStatus}>Toggle User Status</button>
     </div>
   );
