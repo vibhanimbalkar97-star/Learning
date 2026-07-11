@@ -49,3 +49,84 @@ Object Features
 ✅ Destructuring
 ✅ Optional chaining (?.)
 ✅ Nullish coalescing (??)
+
+Easy rule to remember
+
+| Data Type            | Best Method                                            |
+| -------------------- | ------------------------------------------------------ |
+| **Array of objects** | `reduce()`, `map()`, `filter()`, `find()`              |
+| **Single object**    | `Object.keys()`, `Object.values()`, `Object.entries()` |
+
+Interview Tip
+Use Object.keys() when you want to work with an object's property names.
+Use Object.values() when you want to calculate or iterate over an object's values.
+Use reduce() directly on an array of objects when you need totals, averages, maximums, or other aggregate values.
+
+1. Optional Chaining (?.)
+Purpose
+
+Safely access a property that might not exist.
+
+Without ?., JavaScript can throw an error.
+
+const user = {
+  name: "John",
+};
+
+console.log(user.address.city); // Cannot read properties of undefined (reading 'city')
+
+why? user.address = undefined
+the js tries to read = undefined.city which is impossible
+
+solution
+const user = {
+  name: "John",
+};
+
+console.log(user.address?.city);//no error
+undefined
+
+means:
+
+If address exists, then access city.
+
+Otherwise return undefined.
+
+2. Nullish Coalescing (??)
+Purpose
+
+Provide a default value only when the value is:
+
+null
+undefined
+
+const name = undefined;
+
+console.log(name ?? "Guest"); // Guest
+
+const name = "John";
+
+console.log(name ?? "Guest"); //John
+
+How it works
+value ?? defaultValue
+
+means
+
+If value is null or undefined,
+use defaultValue.
+
+Otherwise use value.
+
+| Operator | Meaning                                 | Example                | Output                                           |
+| -------- | --------------------------------------- | ---------------------- | ------------------------------------------------ |
+| `?.`     | Safely access a property                | `user.address?.city`   | `undefined` if `address` doesn't exist           |
+| `??`     | Use a default for `null` or `undefined` | `user.name ?? "Guest"` | `"Guest"` only when `name` is `null`/`undefined` |
+
+
+Quick memory trick
+?. = "Does it exist?" → Safe property access.
+?? = "If it's missing (null/undefined), use this instead." → Default value.
+
+
+

@@ -12,3 +12,16 @@ const user = {
 | `Object.freeze()`  | Prevent changes                    |
 | `Object.seal()`    | Prevent adding/removing properties |
 | `hasOwnProperty()` | Check property exists              |
+
+
+===================================================================================
+
+Object.keys()
+✅ Object.values()
+✅ Object.entries()
+✅ Spread operator (...)
+✅ Destructuring
+✅ Optional chaining (?.)
+✅ Nullish coalescing (??)
+
+
