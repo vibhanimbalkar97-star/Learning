@@ -2,8 +2,10 @@
 // import AdvancedCharacterCounter from "./components/String/AdvancedCharacterCounter";
 // import CharacterCounter from "./components/String/CharacterCounter";
 // import DisplayName from "./components/String/DisplayName";
+// import ShowHidePassword from "./components/String/ShowHidePassword";
 
-import ShowHidePassword from "./components/String/ShowHidePassword";
+import NoteApp from "./components/NoteApp/NoteApp";
+
 
 function App() {
   return (
@@ -12,7 +14,8 @@ function App() {
       {/* <DisplayName /> */}
       {/* <CharacterCounter /> */}
       {/* <AdvancedCharacterCounter /> */}
-      <ShowHidePassword />
+      {/* <ShowHidePassword /> */}
+      <NoteApp />
     </div>
   );
 }
