@@ -1,0 +1,37 @@
+6. Hooks ⭐⭐⭐⭐⭐
+useEffect
+
+Must know
+
+Initial render
+Dependency array
+Empty dependency
+Multiple dependencies
+Cleanup
+
+Questions
+
+Why useEffect?
+When does cleanup run?
+Infinite loop reasons?
+useRef
+
+Questions
+
+Difference between useRef and useState
+When useRef doesn't re-render?
+useMemo
+
+Questions
+
+Why useMemo?
+Expensive calculation?
+useCallback
+
+Questions
+
+Difference between useMemo and useCallback?
+Why useCallback with React.memo?
+Custom Hooks
+
+Basic example

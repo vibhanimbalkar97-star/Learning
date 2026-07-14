@@ -1,0 +1,956 @@
+1. React Fundamentals ⭐⭐⭐⭐⭐ (Must)
+What is React?
+SPA (Single Page Application)
+Virtual DOM
+Real DOM vs Virtual DOM
+JSX
+Babel = Babel is a JavaScript compiler that converts JSX and modern JavaScript features like arrow functions, let/const, optional chaining, etc., into browser-compatible JavaScript. Without Babel, browsers cannot understand JSX directly.
+Components
+Functional Component
+Class Component (basic)
+Props
+State
+One-way Data Binding = React follows one-way data binding, where data flows only from parent to child using props. This makes the application predictable, easier to debug, and easier to maintain.
+
+Interview Questions
+
+What is React?
+Why React is fast?
+Difference between Props and State?
+Can props be modified?
+No. Props are immutable. They are read-only values passed from the parent component. If the value needs to change, the parent should update its state and pass the updated value to the child.
+Why JSX?
+Can a component return multiple elements?
+Yes, a React component can render multiple elements, but they must be wrapped inside a single parent element or a React Fragment (<>...</>). This is because a component must return one root element.
+Why Fragment?
+
+It groups multiple elements without adding an extra DOM node.
+
+
+2. useState
+
+Practice all these
+
+Counter
+Toggle
+Input field
+Checkbox
+Radio button
+Multiple inputs
+Object state
+Array state
+Array of Objects
+CRUD using useState
+
+
+`useState` से जुड़े ये सवाल React इंटरव्यू में सबसे ज़्यादा पूछे जाते हैं। नीचे उनके **interview-ready answers** दिए गए हैं।
+
+---
+
+# 1. What is useState?
+
+### Answer
+
+`useState` is a React Hook that allows functional components to store and update state.
+
+### Syntax
+
+```jsx
+const [count, setCount] = useState(0);
+```
+
+* `count` → current state value
+* `setCount` → function to update the state
+* `0` → initial value
+
+### Interview Answer
+
+> `useState` is a React Hook used to create and manage state inside functional components. Whenever the state changes, React re-renders the component with the updated value.
+
+---
+
+# 2. Why do we use useState?
+
+### Answer
+
+We use `useState` when data changes over time and the UI should update automatically.
+
+### Example
+
+```jsx
+const [count, setCount] = useState(0);
+```
+
+When
+
+```jsx
+setCount(5);
+```
+
+React updates the UI automatically.
+
+### Interview Answer
+
+> We use useState to manage dynamic data like counters, forms, API responses, toggles, and any value that changes and should update the UI.
+
+---
+
+# 3. What happens when state changes?
+
+Example
+
+```jsx
+const [count, setCount] = useState(0);
+
+setCount(1);
+```
+
+React
+
+1. Updates the state.
+2. Re-renders the component.
+3. Updates only the changed part of the DOM (Virtual DOM reconciliation).
+
+### Interview Answer
+
+> When state changes, React schedules a re-render of the component, compares the new Virtual DOM with the previous one, and updates only the necessary parts of the real DOM.
+
+---
+
+# 4. Why don't we update state directly?
+
+❌ Wrong
+
+```jsx
+count = count + 1;
+```
+
+React doesn't know the value changed.
+
+Correct
+
+```jsx
+setCount(count + 1);
+```
+
+### Why?
+
+Because React tracks changes through the setter function.
+
+### Interview Answer
+
+> We should never update state directly because React won't detect the change. We must use the setter function so React can update the state and re-render the component.
+
+---
+
+# 5. Why is state immutable?
+
+Example
+
+❌ Wrong
+
+```jsx
+user.name = "Rahul";
+```
+
+Correct
+
+```jsx
+setUser({
+  ...user,
+  name: "Rahul",
+});
+```
+
+### Why?
+
+React compares references.
+
+If reference doesn't change,
+
+React assumes nothing changed.
+
+### Interview Answer
+
+> React state should be treated as immutable. Instead of modifying the existing object or array, we create a new one so React can detect the change using reference comparison.
+
+---
+
+# 6. Why is state update asynchronous?
+
+Example
+
+```jsx
+setCount(count + 1);
+
+console.log(count);
+```
+
+Output
+
+```text
+0
+```
+
+not
+
+```text
+1
+```
+
+### Why?
+
+React batches state updates for better performance.
+
+### Interview Answer
+
+> State updates are asynchronous because React batches multiple updates together to improve performance. Therefore, the updated value is available in the next render, not immediately after calling the setter.
+
+---
+
+# 7. What is batching?
+
+Example
+
+```jsx
+setCount(1);
+setName("Rahul");
+setAge(25);
+```
+
+React combines them into one render.
+
+Instead of
+
+```text
+Render
+Render
+Render
+```
+
+React does
+
+```text
+Single Render
+```
+
+### Interview Answer
+
+> React batches multiple state updates into a single render to improve performance and reduce unnecessary re-renders.
+
+---
+
+# 8. Difference between
+
+```jsx
+setCount(count + 1);
+```
+
+and
+
+```jsx
+setCount(prev => prev + 1);
+```
+
+### First
+
+```jsx
+setCount(count + 1);
+setCount(count + 1);
+```
+
+Current count = 0
+
+Both become
+
+```jsx
+setCount(1);
+setCount(1);
+```
+
+Final value
+
+```text
+1
+```
+
+---
+
+### Second
+
+```jsx
+setCount(prev => prev + 1);
+setCount(prev => prev + 1);
+```
+
+Works like
+
+```
+0 → 1 → 2
+```
+
+Final
+
+```text
+2
+```
+
+### Interview Answer
+
+> `setCount(count + 1)` uses the current render's value and can become stale if multiple updates happen together. `setCount(prev => prev + 1)` always uses the latest state, so it's the preferred approach when the new state depends on the previous state.
+
+---
+
+# 9. When should we use functional updates?
+
+Use
+
+```jsx
+setCount(prev => prev + 1);
+```
+
+when
+
+* Incrementing counter
+* Decrementing
+* Like button
+* Cart quantity
+* Toggle based on previous state
+* Any update depending on the previous value
+
+### Interview Answer
+
+> Functional updates should be used whenever the new state depends on the previous state, because they always receive the latest value.
+
+---
+
+# 10. Can useState store objects?
+
+Yes.
+
+```jsx
+const [user, setUser] = useState({
+  name: "",
+  age: 20,
+});
+```
+
+Update
+
+```jsx
+setUser({
+  ...user,
+  age: 21,
+});
+```
+
+---
+
+# 11. Can useState store arrays?
+
+Yes.
+
+```jsx
+const [users, setUsers] = useState([]);
+```
+
+Add item
+
+```jsx
+setUsers([...users, newUser]);
+```
+
+---
+
+# 12. Can we have multiple useState?
+
+Yes.
+
+```jsx
+const [name, setName] = useState("");
+const [age, setAge] = useState(20);
+const [city, setCity] = useState("");
+```
+
+### Interview Answer
+
+> Yes, a component can have multiple `useState` hooks. Each hook manages an independent piece of state, which often makes the code simpler and easier to maintain.
+
+---
+
+# 13. When should we use one state object vs multiple states?
+
+**Use multiple states** when the values are independent:
+
+```jsx
+const [name, setName] = useState("");
+const [loading, setLoading] = useState(false);
+```
+
+**Use one object** when the values belong together:
+
+```jsx
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+});
+```
+
+### Interview Answer
+
+> Use separate state variables for unrelated data, and use a single object when multiple fields represent the same entity, such as a form.
+
+---
+
+# 14. Does updating state always re-render the component?
+
+Usually **yes**, but if you set the state to the **same value**, React may skip the re-render.
+
+Example:
+
+```jsx
+const [count, setCount] = useState(5);
+
+setCount(5);
+```
+
+React compares the old and new values using `Object.is()`. If they are equal, React avoids an unnecessary re-render.
+
+### Interview Answer
+
+> State updates normally trigger a re-render. However, if the new state is the same as the current state, React may skip the re-render as an optimization.
+
+---
+
+# 15. Can we call useState inside loops or conditions?
+
+**No.**
+
+❌ Wrong
+
+```jsx
+if (isLoggedIn) {
+  const [name, setName] = useState("");
+}
+```
+
+✅ Correct
+
+```jsx
+const [name, setName] = useState("");
+
+if (isLoggedIn) {
+  // use the state here
+}
+```
+
+### Why?
+
+Hooks must always be called in the same order on every render.
+
+### Interview Answer
+
+> No. Hooks must be called only at the top level of a component or a custom Hook. Calling them inside loops, conditions, or nested functions breaks React's Hook rules.
+
+---
+
+## ⭐ Most Frequently Asked `useState` Interview Questions
+
+1. What is `useState`?
+2. Why do we use `useState`?
+3. Why should state not be updated directly?
+4. Why is state immutable?
+5. Why are state updates asynchronous?
+6. What is batching in React?
+7. Difference between `setCount(count + 1)` and `setCount(prev => prev + 1)`?
+8. When should you use functional updates?
+9. Can `useState` store objects and arrays?
+10. Can a component have multiple `useState` hooks?
+11. When should you use a single object state vs multiple state variables?
+12. Does every state update cause a re-render?
+13. Can `useState` be called inside loops or conditions? Why not?
+
+3. Event Handling ⭐⭐⭐⭐
+onClick
+onChange
+onSubmit
+onBlur
+onKeyDown
+
+Questions
+
+Why not call function directly?
+<button onClick={save}>
+
+vs
+
+<button onClick={save()}>
+
+
+3 event handling
+
+---
+
+# 1. What is Event Handling in React?
+
+### Answer
+
+Event handling in React is the process of responding to user actions such as clicks, typing, form submission, mouse movements, and keyboard events.
+
+Example:
+
+```jsx
+function App() {
+  const handleClick = () => {
+    alert("Button Clicked");
+  };
+
+  return <button onClick={handleClick}>Click</button>;
+}
+```
+
+**Interview Answer:**
+
+> Event handling in React allows components to respond to user interactions. React uses camelCase event names like `onClick` and event handlers are passed as functions.
+
+---
+
+# 2. How is Event Handling different in React compared to HTML?
+
+### HTML
+
+```html
+<button onclick="save()">Save</button>
+```
+
+### React
+
+```jsx
+<button onClick={save}>Save</button>
+```
+
+### Differences
+
+| HTML        | React         |
+| ----------- | ------------- |
+| onclick     | onClick       |
+| Uses string | Uses function |
+| Lowercase   | CamelCase     |
+
+**Interview Answer:**
+
+> In React, event names use camelCase (e.g., `onClick`) and event handlers are passed as functions instead of strings.
+
+---
+
+# 3. Why do we write `onClick={handleClick}` instead of `onClick={handleClick()}`?
+
+### Correct
+
+```jsx
+<button onClick={handleClick}>Click</button>
+```
+
+The function runs **only when the button is clicked.**
+
+---
+
+### Wrong
+
+```jsx
+<button onClick={handleClick()}>Click</button>
+```
+
+The function runs **immediately during rendering**, not on click.
+
+---
+
+### Interview Answer
+
+> `onClick={handleClick}` passes the function reference, so React calls it only when the event occurs. `onClick={handleClick()}` executes the function immediately during rendering.
+
+---
+
+# 4. How do you pass arguments to an event handler?
+
+Example
+
+```jsx
+const greet = (name) => {
+  alert(name);
+};
+
+<button onClick={() => greet("John")}>
+  Click
+</button>
+```
+
+### Why arrow function?
+
+Without it
+
+```jsx
+<button onClick={greet("John")}>
+```
+
+The function executes immediately.
+
+### Interview Answer
+
+> To pass arguments, wrap the function call inside an arrow function so it executes only when the event occurs.
+
+---
+
+# 5. What is Synthetic Event in React?
+
+### Answer
+
+React wraps browser events inside a **SyntheticEvent**.
+
+It provides a consistent event interface across all browsers.
+
+Example
+
+```jsx
+const handleClick = (event) => {
+  console.log(event.target);
+};
+```
+
+### Benefits
+
+* Cross-browser compatibility
+* Same API everywhere
+* Better performance
+
+### Interview Answer
+
+> React uses SyntheticEvent, which is a wrapper around the native browser event. It provides a consistent API across different browsers.
+
+---
+
+# 6. What is `event.preventDefault()`?
+
+Example
+
+```jsx
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log("Submitted");
+};
+```
+
+Without it,
+
+the page reloads after form submission.
+
+### Interview Answer
+
+> `event.preventDefault()` prevents the browser's default behavior, such as refreshing the page when a form is submitted.
+
+---
+
+# 7. What is `event.stopPropagation()`?
+
+Suppose
+
+```jsx
+<div onClick={parentClick}>
+    <button onClick={childClick}>
+        Click
+    </button>
+</div>
+```
+
+Normally
+
+```
+Button Click
+
+↓
+
+Child Click
+
+↓
+
+Parent Click
+```
+
+Using
+
+```jsx
+const childClick = (e) => {
+    e.stopPropagation();
+};
+```
+
+Parent won't execute.
+
+### Interview Answer
+
+> `stopPropagation()` prevents an event from bubbling up to parent elements.
+
+---
+
+# 8. What is Event Bubbling?
+
+Example
+
+```
+Grandparent
+
+↓
+
+Parent
+
+↓
+
+Child Button
+```
+
+Click Child
+
+Execution
+
+```
+Child
+
+↓
+
+Parent
+
+↓
+
+Grandparent
+```
+
+This is Event Bubbling.
+
+### Interview Answer
+
+> Event bubbling means an event starts from the target element and propagates upward through its parent elements.
+
+---
+
+# 9. What is Event Capturing?
+
+Order
+
+```
+Grandparent
+
+↓
+
+Parent
+
+↓
+
+Child
+```
+
+Execution
+
+```
+Grandparent
+
+↓
+
+Parent
+
+↓
+
+Child
+```
+
+React supports capturing using
+
+```jsx
+onClickCapture
+```
+
+### Interview Answer
+
+> Event capturing is the opposite of bubbling. The event travels from the outermost parent to the target element.
+
+---
+
+# 10. Name some common React events.
+
+Examples
+
+```jsx
+onClick
+onChange
+onSubmit
+onBlur
+onFocus
+onKeyDown
+onKeyUp
+onMouseEnter
+onMouseLeave
+onDoubleClick
+```
+
+### Interview Answer
+
+> Common React events include `onClick`, `onChange`, `onSubmit`, `onFocus`, `onBlur`, `onKeyDown`, `onKeyUp`, `onMouseEnter`, and `onMouseLeave`.
+
+---
+
+# 11. Why do we use `onChange` in React forms?
+
+Example
+
+```jsx
+const [name, setName] = useState("");
+
+<input
+    value={name}
+    onChange={(e) => setName(e.target.value)}
+/>
+```
+
+### Interview Answer
+
+> `onChange` is used to update the component state whenever the input value changes, making the input a controlled component.
+
+---
+
+# 12. What is the difference between `onClick` and `onDoubleClick`?
+
+```jsx
+<button onClick={click}>
+```
+
+Runs once.
+
+```jsx
+<button onDoubleClick={doubleClick}>
+```
+
+Runs only when the button is double-clicked.
+
+### Interview Answer
+
+> `onClick` fires on a single click, whereas `onDoubleClick` fires only after two consecutive clicks.
+
+---
+
+# 13. What is an inline event handler?
+
+Example
+
+```jsx
+<button onClick={() => alert("Hello")}>
+```
+
+### Drawback
+
+A new function is created on every render.
+
+### Better
+
+```jsx
+const handleClick = () => {};
+
+<button onClick={handleClick}>
+```
+
+### Interview Answer
+
+> An inline event handler is an arrow function written directly inside JSX. It is convenient but creates a new function on every render, so a separate handler is preferred when possible.
+
+---
+
+# 14. Can we have multiple event handlers?
+
+Yes.
+
+Example
+
+```jsx
+<input
+    onFocus={focus}
+    onBlur={blur}
+    onChange={change}
+/>
+```
+
+### Interview Answer
+
+> Yes. A component can handle multiple events such as `onFocus`, `onBlur`, and `onChange` simultaneously.
+
+---
+
+# 15. Why do event handlers use arrow functions?
+
+Example
+
+```jsx
+<button onClick={() => save(id)}>
+```
+
+### Reason
+
+To pass parameters without executing the function immediately.
+
+### Interview Answer
+
+> Arrow functions are commonly used in event handlers to pass arguments or execute additional logic while ensuring the function runs only when the event occurs.
+
+---
+
+# 16. Can event handlers update state?
+
+Yes.
+
+Example
+
+```jsx
+const [count, setCount] = useState(0);
+
+<button onClick={() => setCount(count + 1)}>
+    Increment
+</button>
+```
+
+### Interview Answer
+
+> Yes. Event handlers commonly update state using the state setter function. Updating state causes React to re-render the component with the new data.
+
+---
+
+# 17. What is the difference between `onInput` and `onChange`?
+
+### `onInput`
+
+* Fires immediately whenever the input changes.
+
+### `onChange` (React)
+
+* Also fires on each value change for text inputs (unlike plain HTML where `change` often fires on blur).
+
+### Interview Answer
+
+> In React, `onChange` behaves similarly to the browser's `input` event for text fields, firing on every value change. `onInput` is available but is used less frequently.
+
+---
+
+# ⭐ Most Asked Event Handling Questions (Interview Checklist)
+
+1. What is event handling in React?
+2. How is React event handling different from HTML?
+3. Why use `onClick={handleClick}` instead of `onClick={handleClick()}`?
+4. How do you pass arguments to an event handler?
+5. What is a `SyntheticEvent`?
+6. What is `preventDefault()`?
+7. What is `stopPropagation()`?
+8. What is event bubbling?
+9. What is event capturing?
+10. What are common React events?
+11. Why do we use `onChange` in forms?
+12. Difference between `onClick` and `onDoubleClick`?
+13. What is an inline event handler?
+14. Can event handlers update state?
+15. When should you use an arrow function in an event handler?
+

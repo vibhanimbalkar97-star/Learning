@@ -1,0 +1,19 @@
+5. Rendering ⭐⭐⭐⭐⭐
+
+Practice
+
+Conditional Rendering
+
+&&
+? :
+
+if else
+
+Rendering Lists
+
+map()
+
+Questions
+
+Why keys?
+Why shouldn't index be key?

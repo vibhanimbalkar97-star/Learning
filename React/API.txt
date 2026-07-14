@@ -1,0 +1,28 @@
+7. API Integration ⭐⭐⭐⭐⭐
+
+Practice
+
+Fetch API
+Axios
+GET
+POST
+PUT
+DELETE
+Loading
+Error handling
+
+Questions
+
+Why async await?
+Fetch vs Axios?
+Why try catch?
+Why loading state?
+Why useEffect for API?
+
+Coding
+
+Fetch Users
+Display
+Delete User
+Update User
+Add User
